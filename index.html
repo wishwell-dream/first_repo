@@ -142,6 +142,7 @@ dialog{width:min(540px,calc(100% - 24px));max-height:90svh;overflow:auto;border:
      await loadScript("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2");
      window.wishwellSupabase=window.supabase.createClient(cfg.supabaseUrl,cfg.supabaseAnonKey);
      cloudReady=true;
+     if (typeof window.loadPublicWishes === "function") window.loadPublicWishes();
    }catch(e){console.error(e);setStatus("Could not load payment services. Check the deployment settings and PayPal account.")}
  }
  window.WISHWELL_LIVE={get cloudReady(){return cloudReady},get capturedOrderId(){return capturedOrderId},clearPayment(){capturedOrderId=null;postBtn.disabled=true;postBtn.textContent="POST WISH AFTER PAYMENT"}};
