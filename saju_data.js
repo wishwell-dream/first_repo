@@ -697,6 +697,8 @@ function getAnalysisEN(res) {
   };
 }
 
+// 재물 대운 변곡점 계산
+function getWealthTiming(dayStem, gyeok, climate) {
   if (gyeok.includes('편재') || gyeok.includes('상관') || gyeok.includes('양인')) {
     return '20대 중반부터 30대 초반 사이에 예측 불가능한 거대한 기회와 트렌드를 타고 자산이 수직 상승하는 급발진형 대운을 맞이한다. 한 방의 폭발력이 어마어마하다.';
   } else if (gyeok.includes('정재') || gyeok.includes('정관') || gyeok.includes('건록')) {
