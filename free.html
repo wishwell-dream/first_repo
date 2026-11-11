@@ -440,11 +440,20 @@
 
           <!-- Portrait Image Right -->
           <div class="rounded-3xl overflow-hidden border-2 border-amber-400/50 bg-black/90 p-5 text-center shadow-2xl relative">
-            <div class="w-52 h-64 sm:w-60 sm:h-72 mx-auto rounded-2xl overflow-hidden border border-white/10 mb-4 bg-slate-800 shadow-inner">
+            <div class="w-52 h-64 sm:w-60 sm:h-72 mx-auto rounded-2xl overflow-hidden border border-white/10 mb-4 bg-slate-800 shadow-inner relative">
               <img id="spouseImg" src="spouse_male.png" alt="미래 배우자 얼굴" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+              <div id="aiGeneratingSpinnerKo" class="hidden absolute inset-0 bg-black/80 flex flex-col items-center justify-center p-2 text-center">
+                <span class="animate-spin text-2xl mb-1">⚡</span>
+                <span class="text-xs text-amber-300 font-bold">AI 실시간 고유 얼굴 생성 중...</span>
+              </div>
             </div>
             <div class="text-base sm:text-lg font-black text-amber-200" id="spouseNameTag">민우 / 알렉산더 (31세 전후)</div>
-            <div class="text-xs text-slate-400 mt-1">✨ 천도령이 사주 일지(日支)로 추출한 AI 미래 배우자</div>
+            <div class="text-xs text-amber-400/90 font-mono mt-1">✨ 실시간 AI 고유 생성 · Seed <span id="spouseSeedKo">#000000</span></div>
+            <div class="mt-3">
+              <button onclick="regenerateSpouseAiFaceKo()" class="text-xs px-4 py-2 rounded-xl bg-purple-600/30 hover:bg-purple-600/50 border border-purple-400/30 text-purple-200 font-bold transition">
+                🔄 AI 얼굴 실시간 다시 생성하기 (-1 토큰)
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -582,6 +591,41 @@ let lastSajuResultKo = null;
 
 function setOracleQuestionKo(q) {
   document.getElementById('oracleInputKo').value = q;
+}
+
+function regenerateSpouseAiFaceKo() {
+  if (userTokensKo <= 0) {
+    alert("🔮 보유 토큰이 부족합니다.");
+    return;
+  }
+  userTokensKo--;
+  document.getElementById('tokenBalanceDisplayKo').innerText = userTokensKo;
+
+  const spinner = document.getElementById('aiGeneratingSpinnerKo');
+  const img = document.getElementById('spouseImg');
+  const seedNum = document.getElementById('spouseSeedKo');
+
+  if (spinner) spinner.classList.remove('hidden');
+
+  const newSeed = Math.floor(Date.now() % 900000 + Math.random() * 100000);
+  const partner = document.getElementById('partnerGender').value;
+  const genderTerm = partner === 'female' ? 'stunning 22yo Korean woman' : 'handsome 25yo Korean man';
+  const spDetail = lastSajuResultKo ? lastSajuResultKo.spouse.detail : { animal: '운명적 인연', style: '매력적인 인상' };
+  const prompt = `studio close-up headshot portrait photo of an attractive ${genderTerm}, subtle ${spDetail.animal} animal facial features, ${spDetail.style}, natural skin texture, 85mm portrait lens, soft rim lighting, clean background, 8k resolution, photorealistic`;
+  const newUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=1000&nologo=true&seed=${newSeed}`;
+
+  const tempImg = new Image();
+  tempImg.onload = function() {
+    img.src = newUrl;
+    if (seedNum) seedNum.innerText = `#${newSeed}`;
+    if (spinner) spinner.classList.add('hidden');
+  };
+  tempImg.onerror = function() {
+    if (spinner) spinner.classList.add('hidden');
+    img.src = newUrl;
+    if (seedNum) seedNum.innerText = `#${newSeed}`;
+  };
+  tempImg.src = newUrl;
 }
 
 function askOracleKo() {
@@ -728,6 +772,12 @@ function calculateSaju(event) {
   // 7. Chapter 3: Spouse (240 combinations)
   const spImg = document.getElementById('spouseImg');
   spImg.src = res.spouse.img;
+  if (document.getElementById('spouseSeedKo')) {
+    document.getElementById('spouseSeedKo').innerText = '#' + res.spouse.seed;
+  }
+  spImg.onerror = function() {
+    this.src = res.spouse.localFallback;
+  };
   spImg.alt = `미래 배우자 얼굴 (${res.spouse.detail.animal}상)`;
 
   document.getElementById('spouseArchetype').innerText = `“${res.spouse.detail.animal}상 · ${res.spouse.detail.style}”`;

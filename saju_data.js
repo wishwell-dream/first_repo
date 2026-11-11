@@ -786,8 +786,15 @@ function executeFullAnalysis(dateStr, timeVal, gender, partner) {
 
   const spDetail = BRANCH_SPOUSE_DETAILS[dayBranch];
   const branchKey = BRANCH_ASCII[dayBranch] || 'shin';
-  const spouseImgPath = partner === 'female' ? `spouse_f_${branchKey}.png` : `spouse_m_${branchKey}.png`;
+  const localImgFallback = partner === 'female' ? `spouse_f_${branchKey}.png` : `spouse_m_${branchKey}.png`;
   const spouseRole = SPOUSE_ROLE_BY_SHIPSHIN[branchShipshinD] || '내 부족한 오행을 채워주고 인생의 균형을 잡아주는 최고의 조력자.';
+
+  // 100% Live Real-Time AI Image Generation URL (Unique seed for every single reading)
+  const uniqueSeed = Math.floor(Date.now() % 900000 + Math.random() * 100000);
+  const genderTerm = partner === 'female' ? 'stunning 22yo Korean woman' : 'handsome 25yo Korean man';
+  const animalConcept = `${spDetail.animal} animal facial features and energy, ${spDetail.style}`;
+  const liveAiPrompt = `studio close-up headshot portrait photo of an attractive ${genderTerm}, subtle ${animalConcept}, refined facial harmony, soft rim lighting, neutral clean background, 8k resolution, photorealistic`;
+  const liveAiImgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(liveAiPrompt)}?width=800&height=1000&nologo=true&seed=${uniqueSeed}`;
 
   let loveKey = '도화살';
   if (shinD.includes('역마살') || shinM.includes('역마살')) loveKey = '역마살';
@@ -820,7 +827,9 @@ function executeFullAnalysis(dateStr, timeVal, gender, partner) {
     spouse: {
       detail: spDetail,
       role: spouseRole,
-      img: spouseImgPath,
+      img: liveAiImgUrl,
+      localFallback: localImgFallback,
+      seed: uniqueSeed,
       season: p.climate,
       dayPillarName: `${p.day.stem}${p.day.branch}일주`,
       hanjaPillarName: `${p.day.stemHanja}${p.day.branchHanja} (日柱)`
