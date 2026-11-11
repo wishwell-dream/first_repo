@@ -621,25 +621,24 @@ function regenerateSpouseAiFaceKo() {
 
   if (spinner) spinner.classList.remove('hidden');
 
-  const newSeed = Math.floor(Date.now() % 900000 + Math.random() * 100000);
   const partner = document.getElementById('partnerGender').value;
-  const genderTerm = partner === 'female' ? 'stunning 22yo Korean woman' : 'handsome 25yo Korean man';
-  const spDetail = lastSajuResultKo ? lastSajuResultKo.spouse.detail : { animal: '운명적 인연', style: '매력적인 인상' };
-  const prompt = `studio close-up headshot portrait photo of an attractive ${genderTerm}, subtle ${spDetail.animal} animal facial features, ${spDetail.style}, natural skin texture, 85mm portrait lens, soft rim lighting, clean background, 8k resolution, photorealistic`;
-  const newUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=1000&nologo=true&seed=${newSeed}`;
+  const ethnicity = document.getElementById('preferredEthnicityKo').value;
+  const branchList = ['in', 'shin', 'ja', 'chuk', 'jin', 'sa', 'o', 'mi', 'myo', 'yu', 'sul', 'hae'];
+  const randomBranch = branchList[Math.floor(Math.random() * branchList.length)];
+  
+  let newUrl = partner === 'female' ? `spouse_f_${randomBranch}.png` : `spouse_m_${randomBranch}.png`;
+  if (ethnicity === 'western') {
+    newUrl = partner === 'female' ? 'spouse_f_western.png' : 'spouse_m_western.png';
+  } else if (ethnicity === 'global') {
+    newUrl = partner === 'female' ? 'spouse_f_global.png' : 'spouse_m_global.png';
+  }
 
-  const tempImg = new Image();
-  tempImg.onload = function() {
+  const newSeed = Math.floor(Math.random() * 899999 + 100000);
+  setTimeout(() => {
     img.src = newUrl;
     if (seedNum) seedNum.innerText = `#${newSeed}`;
     if (spinner) spinner.classList.add('hidden');
-  };
-  tempImg.onerror = function() {
-    if (spinner) spinner.classList.add('hidden');
-    img.src = newUrl;
-    if (seedNum) seedNum.innerText = `#${newSeed}`;
-  };
-  tempImg.src = newUrl;
+  }, 350);
 }
 
 function askOracleKo() {
@@ -759,7 +758,7 @@ function calculateSaju(event) {
   document.getElementById('elemExcessText').innerText = res.excessText;
 
   // 5. Chapter 1: Talents
-  document.getElementById('talentSavage').innerText = res.stemData.savage;
+  document.getElementById('talentSavage').innerText = res.dynamicSavages.talent;
   const talentsHtml = res.stemData.talents.map((t, idx) => `
     <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/5 space-y-1">
       <div class="font-bold text-amber-300 flex items-center gap-2">
@@ -772,7 +771,7 @@ function calculateSaju(event) {
   document.getElementById('talentsList').innerHTML = talentsHtml;
 
   // 6. Chapter 2: Career
-  document.getElementById('careerSavage').innerText = res.stemData.careerSavage;
+  document.getElementById('careerSavage').innerText = res.dynamicSavages.career;
   document.getElementById('badEnvList').innerHTML = res.stemData.badEnvs.map(e => `<li>${e}</li>`).join('');
   document.getElementById('goodEnvList').innerHTML = res.stemData.goodEnvs.map(e => `<li>${e}</li>`).join('');
   const jobsHtml = res.stemData.careers.map((job, idx) => `
@@ -796,7 +795,7 @@ function calculateSaju(event) {
   spImg.alt = `미래 배우자 얼굴 (${res.spouse.detail.animal}상)`;
 
   document.getElementById('spouseArchetype').innerText = `“${res.spouse.detail.animal}상 · ${res.spouse.detail.style}”`;
-  document.getElementById('spouseSavage').innerText = `${res.spouse.season}철에 태어난 ${res.spouse.dayPillarName} 맞춤 처방전: “${res.spouse.detail.animal}상의 기운을 품고 태어난 인연으로, 네 사주의 결핍을 채워주고 인생을 일으켜 세울 운명의 짝이다.”`;
+  document.getElementById('spouseSavage').innerText = res.dynamicSavages.spouse;
   document.getElementById('spouseFullAppearance').innerText = `${res.spouse.detail.style}. ${res.spouse.detail.animal}을 닮은 매력적인 눈매와 독보적인 아우라를 지님.`;
   document.getElementById('spouseFullRole').innerText = res.spouse.role;
   document.getElementById('spouseFullAge').innerText = res.spouse.detail.age;
@@ -809,7 +808,7 @@ function calculateSaju(event) {
   document.getElementById('spouseNameTag').innerText = `${res.spouse.detail.animal}상 운명의 짝 (${res.spouse.detail.age})`;
 
   // 8. Chapter 4: Shinsal & Love
-  document.getElementById('loveSavage').innerText = res.loveData.savage;
+  document.getElementById('loveSavage').innerText = res.dynamicSavages.love;
   document.getElementById('shinsalTitle').innerText = res.loveData.title;
   document.getElementById('shinsalDesc').innerText = `너는 사주 원국에 ${res.loveData.title.split('—')[0].trim()}의 에너지가 깊게 배어있어, 상대방을 순식간에 매료시키는 독보적인 분위기를 품고 있다.`;
   document.getElementById('shinsalTrigger').innerText = res.loveData.trigger;
@@ -817,7 +816,7 @@ function calculateSaju(event) {
   document.getElementById('shinsalTiming').innerText = res.loveData.timing;
 
   // 9. Chapter 5: Oracle & AI Prompt
-  document.getElementById('oracleText').innerText = res.stemData.oracle;
+  document.getElementById('oracleText').innerText = res.dynamicSavages.oracle;
   document.getElementById('aiPromptText').value = `Cinematic portrait of an East Asian spouse radiating ${res.stemData.name} and ${res.spouse.detail.style}, ${res.spouse.detail.animal}-like charismatic eyes, luxury wardrobe, 8k resolution, Masterpiece --ar 16:9`;
 
   // Show Results Area Smoothly

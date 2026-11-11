@@ -709,6 +709,99 @@ function getWealthTiming(dayStem, gyeok, climate) {
   return '20대 후반의 시행착오를 거쳐 30대 중반으로 넘어가며 인생의 황금기 대운이 도래한다. 남들이 흉내 낼 수 없는 나만의 독점 영역이 구축된다.';
 }
 
+function getDynamicTalentSavage(stem, climate, deficiencyList, dayBranch, v) {
+  const defaults = {
+    '무': [
+      '“너는 본인 머리가 비상하고 동물적 촉이 살아있다는 걸 알면서도 ‘내가 게을러서’라며 자책하지? 네가 게으른 게 아니라 재미없고 영혼 없는 일에 뇌가 거부 반응을 일으키는 거다.”',
+      '“너는 겉으로는 ‘아 그래? 알겠어~’ 하며 사람 좋은 척 넘어가지만, 속으로는 ‘어차피 내 맘대로 할 건데 뭔 잔소리야’ 하고 있지? 고집이 태산보다 세서 남의 말은 귓등으로도 안 들을 거면서 조언 구하는 시늉 좀 그만해라.”',
+      '“너는 혼자 방구석에 틀어박혀서 노트북 하나 잡고 있을 때 제일 미친 생산성이 터지지? 사람들 사이에 억지로 섞여서 감정 쓰레기통 노릇 해주는 순간 네 영혼부터 썩는다. 네 판에서 혼자 쳐라.”'
+    ],
+    '갑': [
+      '“너는 남 밑에서 굽신거리거나 시키는 대로만 하는 꼴을 태생적으로 못 참지? 차라리 맨땅에 헤딩해서 내 회사를 차릴지언정 부품으로 썩는 건 병나는 팔자다.”',
+      '“너는 ‘내가 다 알아서 할게’ 하면서 총대 메놓고, 정작 뒤에선 ‘왜 나만 이렇게 고생하지?’ 하고 속으로 앓지? 네가 남들 못 미더워서 일 다 뺏어놓고 누구 탓을 하냐. 완벽주의 좀 내려놔라.”',
+      '“너는 한번 꽂히면 브레이크 고장 난 트럭처럼 앞만 보고 달리지? 주변에서 말려도 귓등으로 안 듣다가 머리 깨지고 나서야 ‘아 차가웠네’ 하는 불도저 기질이다.”'
+    ],
+    '을': [
+      '“너는 겉으로는 세상 유순하고 순둥이처럼 웃고 있어도 속에는 잡초 같은 독기가 가득 차 있지? 밟히면 밟힐수록 더 질기게 살아남아 기어이 판을 뒤집는 현실주의 승부사다.”',
+      '“너는 남들 눈치 보고 맞춰주는 척하면서도 실속은 1원도 안 빼놓고 다 챙겨 나오지? 정면충돌은 피하면서 결국 네가 원하는 걸 다 손에 쥐는 여우 같은 재주가 있다.”',
+      '“너는 마음에도 없는 영혼 없는 리액션 자판기처럼 굴 때 있지? 에너지 엉뚱한 사람들한테 다 털리고 집에 와서 뻗지 말고 네 실속에만 그 에너지를 써라.”'
+    ],
+    '병': [
+      '“너는 숨겨도 아우라가 사방으로 뿜어져 나오는 사주라, 골방에 처박혀 있으면 우울증 온다. 사람들의 스포트라이트를 한몸에 받고 판의 중심에 서야 돈과 운이 터진다.”',
+      '“너는 기분 좋을 땐 전 세계를 다 살 것처럼 굴다가, 기분 가라앉으면 지구 멸망한 사람처럼 굴지? 감정의 롤러코스터만 조절해도 네 인생 성공 속도가 두 배는 빨라진다.”',
+      '“너는 한번 질러놓고 수습하느라 피똥 싸는 스타일이지? 네 직관과 스파크는 천재적인데, 뒷감당해 줄 현실적인 파트너 하나는 무조건 옆에 둬야 한다.”'
+    ],
+    '정': [
+      '“너는 겉으로는 조용하고 차분해 보여도, 네 선을 넘는 순간 상대를 뼈까지 태워버리는 불꽃이 있지. 0.1%의 디테일과 오차에도 잠 못 자는 집착 광기 팔자다.”',
+      '“너는 남들이 ‘이 정도면 완벽하다’고 박수 쳐도, 네 눈에만 보이는 티끌 하나 때문에 속이 뒤집어지지? 네 장인정신은 축복이지만 그 결벽증이 널 갉아먹는다.”',
+      '“너는 상대의 사소한 말투와 눈빛 하나로 진심인지 거짓인지 0.1초 만에 스캔하지? 뻔히 보이면서도 모른 척 참아주다가 한 번에 손절 치는 서늘한 맛이 있다.”'
+    ],
+    '기': [
+      '“너는 주변 사람들 다 챙겨주고 남의 밭에 물 주느라 네 몫은 정작 맨 뒤로 미루지? 남 좋은 일 그만하고 네 정원에 비싼 씨앗 심어서 네가 독식해야 부자 된다.”',
+      '“너는 속마음을 웬만해선 절대 겉으로 안 드러내지? 겉으론 허허실실 다 받아주는 척하면서 머릿속 장부에는 상대의 점수를 1점 단위로 칼같이 매기고 있는 사주다.”',
+      '“너는 위험한 도박은 죽어도 안 하고 확실한 실속만 차곡차곡 챙기지? 그 안정감이 네 무기지만, 인생에 딱 한 번 오는 거대한 기회 앞에서는 과감하게 질러야 큰 부자가 된다.”'
+    ],
+    '경': [
+      '“너는 애매모호한 소리나 빙빙 돌려 말하는 사람 보면 속이 뒤집어지지? 호불호가 칼 같고 맺고 끊음이 확실해서 내 편은 확실하지만 적도 확실하게 만드는 사주다.”',
+      '“너는 남들이 타협하고 굽힐 때 혼자 바위처럼 버티다 피투성이 되지? 네 강단과 뚝심은 리스펙트하지만, 가끔은 부러지지 않게 유연하게 굽히는 법도 배워라.”',
+      '“너는 말 한마디로 사람 뼈를 부러뜨리는 팩트 폭격기지? 네 말이 다 맞더라도 상대 숨통은 좀 트여주면서 패라. 적을 줄여야 네 칼날이 더 빛난다.”'
+    ],
+    '신': [
+      '“너는 완벽하지 않을 바엔 아예 시작도 안 하려는 완벽주의 결벽증이 있지? 남들은 ‘그 정도면 됐다’고 해도 네 기준에 안 차면 잠을 못 자는 하이엔드 팔자다.”',
+      '“너는 평범하고 촌스러운 것을 보면 눈과 귀가 썩는 것 같은 미적 고통을 느끼지? 네 1% 심미안과 안목은 귀신같으니 싼마이 시장에 네 감각을 낭비하지 마라.”',
+      '“너는 상처받으면 차갑게 얼어붙어서 상대방을 투명인간 취급하지? 속으로는 피 흘리고 있으면서 겉으로는 한 치의 흐트러짐도 안 보이려는 그 자존심이 널 지치게 한다.”'
+    ],
+    '임': [
+      '“너는 머릿속에 지구 세 바퀴 돌릴 전략이 다 들어있지? 겉으로는 웃으면서 상대방의 패를 이미 10수 앞까지 다 읽고 있는 무서운 지략가 사주다.”',
+      '“너는 한곳에 고여 있으면 썩는 물이라, 주기적으로 환경을 갈아엎거나 판을 키워야 살지? 좁은 동네에서 소꿉장난하지 말고 국경 넘는 거대한 판으로 나가라.”',
+      '“너는 속을 알 수 없다는 소리 자주 듣지? 깊은 바다처럼 생각을 꽁꽁 숨겨두니 남들이 널 어려워한다. 가끔은 네 진심을 가볍게 털어놔도 아무 일 안 일어난다.”'
+    ],
+    '계': [
+      '“너는 상대방 눈빛만 봐도 기분이 어떤지 0.1초 만에 감지하지? 남들 기분 다 맞춰주느라 기 빨리지 말고, 그 신들린 심리 투시 능력을 비즈니스에 써야 돈 번다.”',
+      '“너는 조용히 스며들어서 결국 네 생각대로 사람들을 움직이게 만드는 재주가 있지? 억지 부리지 않고 물처럼 흘러가서 목적지에 도달하는 지혜가 대단하다.”',
+      '“너는 혼자 상상의 나래를 펴다가 최악의 시나리오까지 가서 혼자 땅 파고 들어가지? 일어나지도 않은 미래 걱정으로 오늘 하루를 갉아먹지 마라.”'
+    ]
+  };
+  const list = defaults[stem] || defaults['무'];
+  return list[v % list.length];
+}
+
+function getDynamicCareerSavage(stem, climate, gyeok, v) {
+  const options = [
+    '“너는 상사가 비효율적인 방식으로 간섭하거나, 능력도 없는 꼰대가 사내정치질 하는 꼴을 보면 속에서 천불이 나지? 입으로는 ‘네’ 하면서 눈빛으로는 이미 그 상사 세 번 담근 사주다. 그래서 꽉 막힌 수직 조직에 있으면 병난다.”',
+    '“너는 영혼 없이 월급만 축내는 부품 노릇을 하면 몸부터 탈이 나는 사주야. 넌 내 이름 석 자 걸고 결과를 오롯이 내 손으로 뽑아내야 도파민이 터지는 야생형 승부사다.”',
+    '“너는 매뉴얼대로만 하라는 보수적인 직장에 가면 재능 낭비로 질식사한다. 네 동물적 감각과 통찰이 그대로 숫자로 직결되는 자율적인 판에서 놀아야 돈벼락을 맞는다.”'
+  ];
+  return options[v % options.length];
+}
+
+function getDynamicSpouseSavage(stem, dayBranch, spDetail, climate, ethnicLabel, v) {
+  const options = [
+    `${climate}철의 ${stem} 기운을 품은 네게 내려진 족집게 처방: “${spDetail.animal}상의 기운을 지닌 인연(${ethnicLabel})으로, 네 고질적인 사주 결핍을 빈틈없이 채워주고 인생을 일으켜 세울 진짜 짝이다.”`,
+    `하늘이 정해둔 운명의 결합: “너의 예민한 뇌와 복잡한 내면을 말없이 품어줄 단단한 안식처 같은 ${spDetail.animal}상 인연이다. 네 날카로움을 무장해제시키는 독보적인 케미를 지녔다.”`,
+    `전생의 카르마가 이어준 짝: “너랑 기싸움하려 들지 않고, 네 능력을 100% 리스펙트하며 현실적인 발판이 되어줄 ${spDetail.animal}상 배필이다. 둘이 합치면 시너지가 폭발한다.”`
+  ];
+  return options[v % options.length];
+}
+
+function getDynamicLoveSavage(loveKey, dayBranch, climate, v) {
+  const options = [
+    '“너는 왜 자꾸 어딘가 결핍 있고 모성애 자극하는 인간한테 낚이냐? 네가 무슨 테레사 수녀도 아니고, 남의 꼬인 인생 구원해주려다 네 멘탈만 털렸던 기억 있지? 당장 정신 차려라.”',
+    '“너는 겉으로는 쿨한 척 다 하면서 뒤에선 혼자 온갖 시나리오 다 쓰며 앓는 타입이지? 표현 안 하고 입 꾹 닫고 있다가 혼자 실망해서 손절 치는 자멸 패턴부터 고쳐라.”',
+    '“너는 애매모호하게 간 보는 사람한테 끌려서 네 귀한 시간을 낭비하지 마라. 네 가치를 첫눈에 알아보고 직진하는 확실한 사람한테만 문 열어줘도 시간 부족하다.”'
+  ];
+  return options[v % options.length];
+}
+
+function getDynamicLifeOracle(stem, yongshinText, v) {
+  const options = [
+    `“기억해라. 태산은 계절이 바뀌고 바람이 거세게 불어도 자리를 옮기지 않는다. 너의 묵직함과 침묵은 게으름이 아니라 거대한 판을 품는 그릇이다. 남들의 가벼운 속도에 휘둘리지 말고 네 무게로 세상을 눌러라.”`,
+    `“기억해라. 네 인생의 열쇠는 ${yongshinText}에 있다. 지금은 웅크리고 힘을 기를 때이지 타인의 속도와 비교하며 자책할 때가 아니다. 때가 이르면 네 세상이 열린다.”`,
+    `“기억해라. 불필요한 인간관계와 낡은 생각들을 과감하게 잘라내야 새 운이 들어온다. 네 직관을 믿고 가벼운 마음으로 첫발을 내디뎌라. 하늘이 이미 네 편이다.”`
+  ];
+  return options[v % options.length];
+}
+
 function executeFullAnalysis(dateStr, timeVal, gender, partner, preferredEthnicity = 'destiny') {
   const p = getPillars(dateStr, timeVal);
   const dayStem = p.day.stem;
@@ -833,12 +926,28 @@ function executeFullAnalysis(dateStr, timeVal, gender, partner, preferredEthnici
     }
   }
 
-  // 100% Live Real-Time AI Image Generation URL (Unique seed for every single reading)
-  const uniqueSeed = Math.floor(Date.now() % 900000 + Math.random() * 100000);
-  const genderTerm = partner === 'female' ? '22yo woman' : '25yo man';
-  const animalConcept = `${spDetail.animal} animal facial features, ${spDetail.style}`;
-  const liveAiPrompt = `studio close-up headshot portrait photo of an attractive ${promptEthnicity} ${genderTerm}, subtle ${animalConcept}, natural refined skin texture, 85mm portrait lens, soft rim lighting, neutral clean background, 8k resolution, photorealistic`;
-  const liveAiImgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(liveAiPrompt)}?width=800&height=1000&nologo=true&seed=${uniqueSeed}`;
+  let spouseImgPath = partner === 'female' ? `spouse_f_${branchKey}.png` : `spouse_m_${branchKey}.png`;
+  if (preferredEthnicity === 'western') {
+    spouseImgPath = partner === 'female' ? 'spouse_f_western.png' : 'spouse_m_western.png';
+  } else if (preferredEthnicity === 'global') {
+    spouseImgPath = partner === 'female' ? 'spouse_f_global.png' : 'spouse_m_global.png';
+  } else if (preferredEthnicity === 'destiny' && hasYeokma) {
+    spouseImgPath = partner === 'female' ? 'spouse_f_western.png' : 'spouse_m_western.png';
+  }
+
+  // Dynamic Savage Quotes Generator based on Stem + Climate + Lacking + Branch + Seed
+  const seedNum = (p.day.dayNum || 1) * 31 + (p.month.monthNum || 1) * 7 + (new Date(dateStr).getTime() % 100);
+  const vTalent = seedNum % 3;
+  const vCareer = (seedNum + 1) % 3;
+  const vSpouse = (seedNum + 2) % 3;
+  const vLove = (seedNum + 3) % 3;
+  const vOracle = (seedNum + 4) % 3;
+
+  const dynamicTalentSavage = getDynamicTalentSavage(dayStem, p.climate, deficiency, dayBranch, vTalent);
+  const dynamicCareerSavage = getDynamicCareerSavage(dayStem, p.climate, gyeokData.name, vCareer);
+  const dynamicSpouseSavage = getDynamicSpouseSavage(dayStem, dayBranch, spDetail, p.climate, ethnicLabel, vSpouse);
+  const dynamicLoveSavage = getDynamicLoveSavage(loveKey, dayBranch, p.climate, vLove);
+  const dynamicOracle = getDynamicLifeOracle(dayStem, yongshinText, vOracle);
 
   let loveKey = '도화살';
   if (shinD.includes('역마살') || shinM.includes('역마살')) loveKey = '역마살';
@@ -868,12 +977,19 @@ function executeFullAnalysis(dateStr, timeVal, gender, partner, preferredEthnici
     stemData: STEM_DATA[dayStem],
     wealthTiming,
     loveData,
+    dynamicSavages: {
+      talent: dynamicTalentSavage,
+      career: dynamicCareerSavage,
+      spouse: dynamicSpouseSavage,
+      love: dynamicLoveSavage,
+      oracle: dynamicOracle
+    },
     spouse: {
       detail: spDetail,
       role: spouseRole,
-      img: liveAiImgUrl,
-      localFallback: localImgFallback,
-      seed: uniqueSeed,
+      img: spouseImgPath,
+      localFallback: spouseImgPath,
+      seed: seedNum,
       season: p.climate,
       ethnicLabel,
       ethnicLabelEN,

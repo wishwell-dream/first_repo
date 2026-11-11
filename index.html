@@ -550,25 +550,24 @@ function regenerateSpouseAiFace() {
 
   if (spinner) spinner.classList.remove('hidden');
 
-  const newSeed = Math.floor(Date.now() % 900000 + Math.random() * 100000);
   const partner = document.getElementById('partnerGender').value;
-  const genderTerm = partner === 'female' ? 'stunning 22yo Korean woman' : 'handsome 25yo Korean man';
-  const spDetail = lastSajuResult ? lastSajuResult.spouse.detail : { animal: 'Kindred', style: 'Charismatic' };
-  const prompt = `studio close-up headshot portrait photo of an attractive ${genderTerm}, subtle ${spDetail.animal} animal facial features, ${spDetail.style}, natural skin texture, 85mm portrait lens, soft rim lighting, clean background, 8k resolution, photorealistic`;
-  const newUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=1000&nologo=true&seed=${newSeed}`;
+  const ethnicity = document.getElementById('preferredEthnicity').value;
+  const branchList = ['in', 'shin', 'ja', 'chuk', 'jin', 'sa', 'o', 'mi', 'myo', 'yu', 'sul', 'hae'];
+  const randomBranch = branchList[Math.floor(Math.random() * branchList.length)];
+  
+  let newUrl = partner === 'female' ? `spouse_f_${randomBranch}.png` : `spouse_m_${randomBranch}.png`;
+  if (ethnicity === 'western') {
+    newUrl = partner === 'female' ? 'spouse_f_western.png' : 'spouse_m_western.png';
+  } else if (ethnicity === 'global') {
+    newUrl = partner === 'female' ? 'spouse_f_global.png' : 'spouse_m_global.png';
+  }
 
-  const tempImg = new Image();
-  tempImg.onload = function() {
+  const newSeed = Math.floor(Math.random() * 899999 + 100000);
+  setTimeout(() => {
     img.src = newUrl;
     if (seedNum) seedNum.innerText = `#${newSeed}`;
     if (spinner) spinner.classList.add('hidden');
-  };
-  tempImg.onerror = function() {
-    if (spinner) spinner.classList.add('hidden');
-    img.src = newUrl;
-    if (seedNum) seedNum.innerText = `#${newSeed}`;
-  };
-  tempImg.src = newUrl;
+  }, 350);
 }
 
 function askOracle() {
@@ -654,7 +653,7 @@ function calculateSaju(event) {
 
   // 3. Tab 1: Destined Spouse (24 high-res portraits & dynamic match)
   document.getElementById('spouseArchetypeIndex').innerText = `“${res.spouse.detail.animal} Archetype · ${res.spouse.detail.style}”`;
-  document.getElementById('spouseSavageIndex').innerText = `“Born in ${res.spouse.season}, your soul craves elemental balance. Destined with the ${res.spouse.detail.animal} spirit: ${res.spouse.role}”`;
+  document.getElementById('spouseSavageIndex').innerText = res.dynamicSavages.spouse;
   document.getElementById('spouseAuraIndex').innerText = `${res.spouse.detail.style}. ${res.spouse.detail.animal}-like captivating eyes.`;
   document.getElementById('spouseCareerIndex').innerText = res.spouse.detail.jobs;
   document.getElementById('spouseDynamicIndex').innerText = res.spouse.detail.conflict;
