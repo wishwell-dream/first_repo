@@ -1359,11 +1359,29 @@ function calculateSaju(event) {
 
   const spouseImg = document.getElementById('spouseImg');
   const spouseName = document.getElementById('spouseNameTag');
+  
+  let archetypeGroup = 'intellectual';
+  if (['인', '진', '술'].includes(dayBranch)) {
+    archetypeGroup = 'leader';
+  } else if (['묘', '사', '유'].includes(dayBranch)) {
+    archetypeGroup = 'artistic';
+  } else if (['오', '미', '해'].includes(dayBranch)) {
+    archetypeGroup = 'warm';
+  } else {
+    archetypeGroup = 'intellectual'; // 신, 자, 축
+  }
+
   if (partner === 'female') {
-    spouseImg.src = 'spouse_female.png';
+    if (archetypeGroup === 'leader') spouseImg.src = 'spouse_f_leader.png';
+    else if (archetypeGroup === 'artistic') spouseImg.src = 'spouse_f_artistic.png';
+    else if (archetypeGroup === 'warm') spouseImg.src = 'spouse_f_warm.png';
+    else spouseImg.src = 'spouse_female.png';
     spouseName.innerText = spouseData.female_name;
   } else {
-    spouseImg.src = 'spouse_male.png';
+    if (archetypeGroup === 'leader') spouseImg.src = 'spouse_m_leader.png';
+    else if (archetypeGroup === 'artistic') spouseImg.src = 'spouse_m_artistic.png';
+    else if (archetypeGroup === 'warm') spouseImg.src = 'spouse_m_warm.png';
+    else spouseImg.src = 'spouse_male.png';
     spouseName.innerText = spouseData.male_name;
   }
 
