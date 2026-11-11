@@ -172,63 +172,145 @@
     <!-- Reading Results Area (Hidden until submitted) -->
     <section id="resultsArea" class="hidden mt-12 space-y-10 animate-fade-in">
       
-      <!-- Four Pillars Natal Board -->
-      <div class="card-glass rounded-3xl p-6 sm:p-8 shadow-2xl border border-amber-500/30">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4 mb-6">
+      <!-- FULL MANSE력 NATAL BOARD (8글자 정통 만세력 명식표) -->
+      <div class="card-glass rounded-3xl p-6 sm:p-8 shadow-2xl border border-amber-500/40 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
           <div>
-            <span class="text-xs font-bold text-amber-400 tracking-wider">천도령의 사주팔자 정밀 감정서</span>
-            <h3 class="text-xl sm:text-2xl font-black text-slate-100 mt-0.5" id="userBoardTitle">무토(戊土) 일간 · 흙과 불의 웅장한 기운</h3>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-black tracking-widest uppercase text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/30">천도령 정통 만세력 (萬歲曆)</span>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-bold">VIP 무제한 해금</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-black text-slate-100 mt-2" id="userBoardTitle">무토(戊土) 일간 · 거대한 산의 기운</h3>
           </div>
-          <div>
-            <span class="text-xs px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-extrabold">
-              ✓ VIP 프리패스 전편 대장문 해금
-            </span>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span id="badgeGyeokguk" class="px-3 py-1.5 rounded-xl bg-amber-500/20 text-amber-300 font-extrabold border border-amber-500/30 shadow-sm">정재격 (正財格)</span>
+            <span id="badgeShingang" class="px-3 py-1.5 rounded-xl bg-purple-500/20 text-purple-300 font-extrabold border border-purple-500/30 shadow-sm">신약 사주 (35점)</span>
+            <span id="badgeYongshin" class="px-3 py-1.5 rounded-xl bg-rose-500/20 text-rose-300 font-extrabold border border-rose-500/30 shadow-sm">화(火) 용신</span>
           </div>
         </div>
 
-        <!-- 4 Pillars Table -->
-        <div class="grid grid-cols-4 gap-2 text-center text-xs sm:text-sm">
-          <div class="p-3 bg-white/5 rounded-2xl border border-white/5">
-            <div class="text-[11px] text-slate-400 mb-1">시주 (時柱)</div>
-            <div class="font-bold text-amber-300 text-sm sm:text-base" id="pillHour">병진(丙辰)</div>
-            <div class="text-[10px] text-slate-400 mt-0.5" id="pillHourDesc">태양 / 늪지</div>
+        <!-- 8 Pillars Authentic Grid Table -->
+        <div class="overflow-x-auto rounded-2xl border border-white/10 bg-black/40">
+          <table class="w-full text-center border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="text-slate-400 border-b border-white/10 text-[11px] uppercase tracking-wider bg-white/[0.02]">
+                <th class="p-3 w-1/5 text-slate-500 font-semibold">구분</th>
+                <th class="p-3 w-1/5 text-slate-300">시주 (時柱)</th>
+                <th class="p-3 w-1/5 text-amber-300 font-black bg-amber-500/10 border-x border-amber-500/20">일주 (日柱 · 본체)</th>
+                <th class="p-3 w-1/5 text-slate-300">월주 (月柱)</th>
+                <th class="p-3 w-1/5 text-slate-300">년주 (年柱)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5">
+              <!-- 천간 십신 -->
+              <tr>
+                <td class="p-2.5 text-slate-400 font-medium text-[11px] bg-white/[0.01]">천간 십신</td>
+                <td id="mStemShipshinH" class="p-2.5 text-slate-300 font-bold">편인</td>
+                <td class="p-2.5 text-amber-300 font-black bg-amber-500/10 border-x border-amber-500/20">일간 (나 자신)</td>
+                <td id="mStemShipshinM" class="p-2.5 text-slate-300 font-bold">편재</td>
+                <td id="mStemShipshinY" class="p-2.5 text-slate-300 font-bold">정인</td>
+              </tr>
+              <!-- 천간 글자 & 오행 배지 -->
+              <tr class="bg-white/[0.02]">
+                <td class="p-3 text-slate-400 font-medium text-[11px]">천간 (天干)</td>
+                <td id="mStemBadgeH" class="p-3"></td>
+                <td id="mStemBadgeD" class="p-3 bg-amber-500/10 border-x border-amber-500/20"></td>
+                <td id="mStemBadgeM" class="p-3"></td>
+                <td id="mStemBadgeY" class="p-3"></td>
+              </tr>
+              <!-- 지지 글자 & 오행 배지 -->
+              <tr class="bg-white/[0.02]">
+                <td class="p-3 text-slate-400 font-medium text-[11px]">지지 (地支)</td>
+                <td id="mBranchBadgeH" class="p-3"></td>
+                <td id="mBranchBadgeD" class="p-3 bg-amber-500/10 border-x border-amber-500/20"></td>
+                <td id="mBranchBadgeM" class="p-3"></td>
+                <td id="mBranchBadgeY" class="p-3"></td>
+              </tr>
+              <!-- 지지 십신 -->
+              <tr>
+                <td class="p-2.5 text-slate-400 font-medium text-[11px] bg-white/[0.01]">지지 십신</td>
+                <td id="mBranchShipshinH" class="p-2.5 text-slate-300 font-bold">비견</td>
+                <td id="mBranchShipshinD" class="p-2.5 text-amber-300 font-black bg-amber-500/10 border-x border-amber-500/20">식신 (배우자궁)</td>
+                <td id="mBranchShipshinM" class="p-2.5 text-slate-300 font-bold">정재</td>
+                <td id="mBranchShipshinY" class="p-2.5 text-slate-300 font-bold">겁재</td>
+              </tr>
+              <!-- 지장간 -->
+              <tr>
+                <td class="p-2.5 text-slate-400 font-medium text-[11px] bg-white/[0.01]">지장간 (藏干)</td>
+                <td id="mJijanganH" class="p-2.5 text-slate-400 text-[11px] font-mono">乙 癸 戊</td>
+                <td id="mJijanganD" class="p-2.5 text-amber-300 text-[11px] font-mono bg-amber-500/10 border-x border-amber-500/20 font-bold">戊 壬 庚</td>
+                <td id="mJijanganM" class="p-2.5 text-slate-400 text-[11px] font-mono">壬 癸</td>
+                <td id="mJijanganY" class="p-2.5 text-slate-400 text-[11px] font-mono">癸 辛 己</td>
+              </tr>
+              <!-- 12운성 -->
+              <tr>
+                <td class="p-2.5 text-slate-400 font-medium text-[11px] bg-white/[0.01]">12운성 (運星)</td>
+                <td id="mFortuneH" class="p-2.5 text-slate-300 font-medium">관대(冠帶)</td>
+                <td id="mFortuneD" class="p-2.5 text-amber-300 font-bold bg-amber-500/10 border-x border-amber-500/20">병(病)</td>
+                <td id="mFortuneM" class="p-2.5 text-slate-300 font-medium">태(胎)</td>
+                <td id="mFortuneY" class="p-2.5 text-slate-300 font-medium">양(養)</td>
+              </tr>
+              <!-- 핵심 신살 -->
+              <tr class="border-t border-white/10">
+                <td class="p-2.5 text-slate-400 font-medium text-[11px] bg-white/[0.01]">핵심 신살</td>
+                <td id="mShinsalH" class="p-2.5 text-purple-300 font-medium text-[11px]">괴강살</td>
+                <td id="mShinsalD" class="p-2.5 text-amber-300 font-bold bg-amber-500/10 border-x border-amber-500/20 text-[11px]">문창귀인 · 역마</td>
+                <td id="mShinsalM" class="p-2.5 text-pink-300 font-medium text-[11px]">자수도화</td>
+                <td id="mShinsalY" class="p-2.5 text-emerald-300 font-medium text-[11px]">천을귀인 · 화개</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Four Pillars Deep Diagnosis Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 text-xs sm:text-sm">
+          <div class="p-4 rounded-2xl bg-black/50 border border-amber-500/20 space-y-1.5">
+            <div class="flex items-center gap-1.5 text-amber-400 font-bold">
+              <span>🎯</span> <span>사주 격국 (타고난 그릇)</span>
+            </div>
+            <p id="descGyeokguk" class="text-slate-300 text-xs leading-relaxed">정재격: 치밀하고 현실적인 감각과 실리주의로 자산을 차곡차곡 불려 나가는 격국.</p>
           </div>
-          <div class="p-3 bg-amber-500/20 rounded-2xl border-2 border-amber-400/60 shadow-lg">
-            <div class="text-[11px] text-amber-300 font-extrabold mb-1">일주 (日柱 · 본체)</div>
-            <div class="font-black text-amber-200 text-base sm:text-lg" id="pillDay">무신(戊申)</div>
-            <div class="text-[10px] text-amber-300 font-medium mt-0.5" id="pillDayDesc">거대한 산 / 바위</div>
+          <div class="p-4 rounded-2xl bg-black/50 border border-purple-500/20 space-y-1.5">
+            <div class="flex items-center gap-1.5 text-purple-400 font-bold">
+              <span>⚖️</span> <span>신강·신약 (에너지 체질)</span>
+            </div>
+            <p id="descShingang" class="text-slate-300 text-xs leading-relaxed">신약 사주: 내 에너지를 외부로 많이 소모하는 구조라, 혼자 다 하려 하지 말고 믿을 만한 파트너와 협업해야 잠재력이 터진다.</p>
           </div>
-          <div class="p-3 bg-white/5 rounded-2xl border border-white/5">
-            <div class="text-[11px] text-slate-400 mb-1">월주 (月柱)</div>
-            <div class="font-bold text-slate-200 text-sm sm:text-base" id="pillMonth">갑자(甲子)</div>
-            <div class="text-[10px] text-slate-400 mt-0.5" id="pillMonthDesc">소나무 / 밤바다</div>
-          </div>
-          <div class="p-3 bg-white/5 rounded-2xl border border-white/5">
-            <div class="text-[11px] text-slate-400 mb-1">년주 (年柱)</div>
-            <div class="font-bold text-slate-200 text-sm sm:text-base" id="pillYear">무인(戊寅)</div>
-            <div class="text-[10px] text-slate-400 mt-0.5" id="pillYearDesc">황금 호랑이</div>
+          <div class="p-4 rounded-2xl bg-black/50 border border-rose-500/20 space-y-1.5">
+            <div class="flex items-center gap-1.5 text-rose-400 font-bold">
+              <span>🔥</span> <span>나를 살리는 용신 (用神)</span>
+            </div>
+            <p id="descYongshin" class="text-slate-300 text-xs leading-relaxed">화(火) 용신: 차가운 겨울 흙을 따뜻하게 녹여주는 불의 기운(미디어, 콘텐츠, 브랜딩, 열정)을 흡수해야 대운이 열린다!</p>
           </div>
         </div>
 
-        <!-- Five Elements (오행 분포) Gauge -->
-        <div class="mt-6 pt-5 border-t border-white/10 space-y-2">
-          <div class="flex justify-between text-xs text-slate-300 font-bold">
-            <span>내 사주 오행(五行) 에너지 분포</span>
-            <span id="gaugeLegend" class="text-amber-400">토(土) & 수(水) 발달 사주</span>
+        <!-- Five Elements Breakdown Gauge & Deficiencies -->
+        <div class="p-5 rounded-2xl bg-black/60 border border-white/10 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/5 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">📊</span>
+              <span class="font-extrabold text-slate-100 text-sm">오행(五行) 에너지 분포 & 과다·결핍 팩폭</span>
+            </div>
+            <span id="elemCountSummary" class="text-slate-400 text-xs font-mono">목 0 · 화 2 · 토 3 · 금 1 · 수 2</span>
           </div>
-          <div id="gaugeBars" class="w-full h-3 rounded-full overflow-hidden flex bg-slate-800">
-            <div class="bg-emerald-500 h-full" style="width: 15%" title="목(Wood) 15%"></div>
-            <div class="bg-rose-500 h-full" style="width: 20%" title="화(Fire) 20%"></div>
-            <div class="bg-amber-400 h-full" style="width: 35%" title="토(Earth) 35%"></div>
-            <div class="bg-slate-300 h-full" style="width: 15%" title="금(Metal) 15%"></div>
-            <div class="bg-blue-500 h-full" style="width: 15%" title="수(Water) 15%"></div>
+
+          <div id="gaugeBars" class="w-full h-3.5 rounded-full overflow-hidden flex bg-slate-800 shadow-inner">
+            <div id="barMok" class="bg-emerald-500 h-full transition-all duration-500" style="width: 0%"></div>
+            <div id="barHwa" class="bg-rose-500 h-full transition-all duration-500" style="width: 25%"></div>
+            <div id="barTo" class="bg-amber-400 h-full transition-all duration-500" style="width: 37.5%"></div>
+            <div id="barGeum" class="bg-slate-200 h-full transition-all duration-500" style="width: 12.5%"></div>
+            <div id="barSu" class="bg-blue-500 h-full transition-all duration-500" style="width: 25%"></div>
           </div>
-          <div class="flex justify-between text-[10px] text-slate-400 pt-1">
-            <span class="text-emerald-400">● 목 15%</span>
-            <span class="text-rose-400">● 화 20%</span>
-            <span class="text-amber-300 font-bold">● 토 35% (최강)</span>
-            <span class="text-slate-300">● 금 15%</span>
-            <span class="text-blue-400">● 수 15%</span>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-xs">
+            <div class="p-3.5 bg-rose-500/10 rounded-xl border border-rose-500/20 space-y-1">
+              <span class="text-rose-400 font-bold block text-xs">🚨 결핍된 오행 팩폭 (조심할 점)</span>
+              <p id="elemDeficiencyText" class="text-slate-300 leading-relaxed">나무(木) 0개: 사주에 관성(규범/조직/참는 힘)이 없어 남 밑에서 통제받거나 잔소리 듣는 걸 알레르기처럼 싫어하며, 내 독립적인 판을 짜야만 직성이 풀린다.</p>
+            </div>
+            <div class="p-3.5 bg-blue-500/10 rounded-xl border border-blue-500/20 space-y-1">
+              <span class="text-blue-400 font-bold block text-xs">🌊 가장 강한 오행 팩폭 (강점 활용)</span>
+              <p id="elemExcessText" class="text-slate-300 leading-relaxed">흙(土) 3개: 태산처럼 묵직하고 신뢰감이 깊으나, 고집이 세고 한 번 결심하면 타협을 안 하니 유연한 소통을 무기로 삼아라.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -447,32 +529,8 @@
 
   <!-- Client-side Logic Script -->
   <script>
-const SHINSAL_DATA = {
-  "도화": {
-    "name": "도화살(桃花煞) — 시선을 독점하는 치명적 매력",
-    "desc": "너는 사람들의 시선을 자석처럼 끌어당기는 치명적인 매력을 품고 있다. 남들처럼 요란하게 치장하지 않아도 묘한 긴장감과 매력을 풍기며, 이성들이 네 환심을 사려고 안달이 난다.",
-    "trigger": "무심한 표정을 짓다가 씩 웃어줄 때. 무표정과 눈웃음의 갭차이에 상대방 뇌관이 터진다.",
-    "red_flag": "‘어딘가 결핍 있고 모성애 자극하는 인간’. 네가 무슨 테레사 수녀도 아닌데 구원해주려다 멘탈만 탈탈 털린다.",
-    "timing": "2027년 가을(양력 9~11월), 사주의 강한 인연운(천을귀인 대운)이 들어오며 평생을 함께할 단단한 인연이 나타난다."
-  },
-  "역마": {
-    "name": "역마살(驛馬煞) — 자유로운 영혼과 거침없는 활동력",
-    "desc": "너는 한곳에 얌전히 갇혀 있거나 구속당하면 숨이 막히는 자유로운 영혼이다. 활동 반경이 넓고 시원시원하며, 돌아다니고 새로운 세상을 탐험할 때 운이 폭발한다.",
-    "trigger": "자기 일에 미쳐서 눈 반짝이며 몰입할 때. 거침없이 앞서 나가는 프로페셔널한 뒷모습에 반한다.",
-    "red_flag": "집착 심하고 사사건건 연락 검사하며 내 행동반경을 통제하려는 불안형 족쇄 인간.",
-    "timing": "2026년 하반기 이동수와 함께 새로운 환경이나 여행지, 외부 프로젝트에서 운명적인 상대가 엮인다."
-  },
-  "화개": {
-    "name": "화개살(華蓋煞) — 귀티 나는 고독한 예술가의 아우라",
-    "desc": "너는 남들이 쉽게 범접할 수 없는 귀티와 깊은 예술적 직관을 품고 있다. 혼자만의 시간과 공간이 완벽히 보장되어야 에너지가 충전되며, 조용하지만 묵직한 존재감을 지녔다.",
-    "trigger": "나만의 확고한 취향과 세계관을 조용히 드러낼 때. 가벼운 유행에 휘둘리지 않는 기품에 압도당한다.",
-    "red_flag": "천박하게 굴거나 내 프라이버시를 함부로 침범하며 선 넘는 무례한 인간.",
-    "timing": "2027년, 오랫동안 알고 지낸 지인이나 깊은 대화가 통하는 소울메이트와의 관계가 급진전된다."
-  }
-};
-
 function calculateSaju(event) {
-  event.preventDefault();
+  if (event) event.preventDefault();
   
   const year = parseInt(document.getElementById('birthYear').value) || 1998;
   const month = parseInt(document.getElementById('birthMonth').value) || 1;
@@ -480,208 +538,113 @@ function calculateSaju(event) {
   const hourVal = document.getElementById('birthHour').value;
   const partner = document.getElementById('partnerGender').value;
 
-  const stems = ['갑', '을', '병', '정', '무', '기', '경', '신', '임', '계'];
-  const branches = ['자', '축', '인', '묘', '진', '사', '오', '미', '신', '유', '술', '해'];
-  const jiazi = [];
-  for (let i = 0; i < 60; i++) {
-    jiazi.push(stems[i % 10] + branches[i % 12]);
-  }
+  const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  const res = executeFullAnalysis(dateStr, hourVal, 'neutral', partner);
 
-  // 1. Exact Day Pillar (일주): Reference 1998-01-01 is '무신' (index 44 in 60 Jiazi)
-  const refDate = new Date(Date.UTC(1998, 0, 1));
-  const targetDate = new Date(Date.UTC(year, month - 1, day));
-  const diffDays = Math.round((targetDate - refDate) / (1000 * 60 * 60 * 24));
-  const refIdx = 44; // 무신
-  const dayIdx = ((refIdx + diffDays) % 60 + 60) % 60;
-  const dayPillar = jiazi[dayIdx];
-  const dayStem = dayPillar[0];
-  const dayBranch = dayPillar[1];
+  // 1. Board Header & Badges
+  document.getElementById('userBoardTitle').innerText = `${res.stemData.name} · ${res.spouse.season}의 기운`;
+  document.getElementById('badgeGyeokguk').innerText = res.gyeokguk.name;
+  document.getElementById('badgeShingang').innerText = res.shingang.title;
+  document.getElementById('badgeYongshin').innerText = res.yongshin.title;
 
-  // 2. Year Pillar (년주): Saju year begins around Feb 4 (입춘)
-  const isBeforeIpchun = (month < 2 || (month === 2 && day < 4));
-  const sajuYear = isBeforeIpchun ? year - 1 : year;
-  const yearIdx = ((sajuYear - 1984) % 60 + 60) % 60;
-  const yearPillar = jiazi[yearIdx];
-  const yearStem = yearPillar[0];
-  const yearBranch = yearPillar[1];
+  // 2. Full 8 Pillars Grid Table
+  document.getElementById('mStemShipshinH').innerText = res.shipshin.stemH;
+  if (document.getElementById('mStemShipshinD')) document.getElementById('mStemShipshinD').innerText = '일간 (나 자신)';
+  document.getElementById('mStemShipshinM').innerText = res.shipshin.stemM;
+  document.getElementById('mStemShipshinY').innerText = res.shipshin.stemY;
 
-  // 3. Month Pillar (월주):
-  // 1998-01-01 (정축년, 축월 전 자월) -> 임자
-  const monthBranchIdx = (month + 1) % 12;
-  const monthStemBase = [2, 4, 6, 8, 0][stems.indexOf(yearStem) % 5];
-  const monthStemIdx = (monthStemBase + (month === 1 ? 11 : month - 2)) % 10;
-  let monthPillar = stems[monthStemIdx] + branches[monthBranchIdx];
-  if (year === 1998 && month === 1 && day === 1) {
-    monthPillar = '임자';
-  }
+  document.getElementById('mStemBadgeH').innerHTML = getElemBadge(STEM_ELEM[res.pillars.hour.stem], res.pillars.hour.stemHanja, res.pillars.hour.stem);
+  document.getElementById('mStemBadgeD').innerHTML = getElemBadge(STEM_ELEM[res.pillars.day.stem], res.pillars.day.stemHanja, res.pillars.day.stem);
+  document.getElementById('mStemBadgeM').innerHTML = getElemBadge(STEM_ELEM[res.pillars.month.stem], res.pillars.month.stemHanja, res.pillars.month.stem);
+  document.getElementById('mStemBadgeY').innerHTML = getElemBadge(STEM_ELEM[res.pillars.year.stem], res.pillars.year.stemHanja, res.pillars.year.stem);
 
-  // 4. Hour Pillar (시주):
-  let hourPillar = '시주 미상';
-  const hourMap = {
-    '23-1': 0, '1-3': 1, '3-5': 2, '5-7': 3, '7-9': 4,
-    '9-11': 5, '11-13': 6, '13-15': 7, '15-17': 8,
-    '17-19': 9, '19-21': 10, '21-23': 11
-  };
-  if (hourVal !== 'unknown' && hourMap[hourVal] !== undefined) {
-    const hBranchIdx = hourMap[hourVal];
-    const dayStemIdx = stems.indexOf(dayStem);
-    const hStemBase = [0, 2, 4, 6, 8][dayStemIdx % 5];
-    const hStemIdx = (hStemBase + hBranchIdx) % 10;
-    hourPillar = stems[hStemIdx] + branches[hBranchIdx];
-  }
+  document.getElementById('mBranchBadgeH').innerHTML = getElemBadge(BRANCH_ELEM[res.pillars.hour.branch], res.pillars.hour.branchHanja, BRANCH_ANIMALS[res.pillars.hour.branch]);
+  document.getElementById('mBranchBadgeD').innerHTML = getElemBadge(BRANCH_ELEM[res.pillars.day.branch], res.pillars.day.branchHanja, BRANCH_ANIMALS[res.pillars.day.branch]);
+  document.getElementById('mBranchBadgeM').innerHTML = getElemBadge(BRANCH_ELEM[res.pillars.month.branch], res.pillars.month.branchHanja, BRANCH_ANIMALS[res.pillars.month.branch]);
+  document.getElementById('mBranchBadgeY').innerHTML = getElemBadge(BRANCH_ELEM[res.pillars.year.branch], res.pillars.year.branchHanja, BRANCH_ANIMALS[res.pillars.year.branch]);
 
-  // UI: Four Pillars Board
-  document.getElementById('pillYear').innerText = yearPillar;
-  document.getElementById('pillMonth').innerText = monthPillar;
-  document.getElementById('pillDay').innerText = dayPillar;
-  document.getElementById('pillHour').innerText = hourPillar;
+  document.getElementById('mBranchShipshinH').innerText = res.shipshin.branchH;
+  document.getElementById('mBranchShipshinD').innerText = `${res.shipshin.branchD} (배우자궁)`;
+  document.getElementById('mBranchShipshinM').innerText = res.shipshin.branchM;
+  document.getElementById('mBranchShipshinY').innerText = res.shipshin.branchY;
 
-  // Lookup Dynamic Content!
-  const stemData = STEMS_DATA[dayStem] || STEMS_DATA['무'];
-  const spouseData = SPOUSE_DATA[dayBranch] || SPOUSE_DATA['신'];
+  document.getElementById('mJijanganH').innerText = JIJANGAN[res.pillars.hour.branch];
+  document.getElementById('mJijanganD').innerText = JIJANGAN[res.pillars.day.branch];
+  document.getElementById('mJijanganM').innerText = JIJANGAN[res.pillars.month.branch];
+  document.getElementById('mJijanganY').innerText = JIJANGAN[res.pillars.year.branch];
 
-  document.getElementById('userBoardTitle').innerText = stemData.title;
-  document.getElementById('pillDayDesc').innerText = stemData.nature;
+  document.getElementById('mFortuneH').innerText = res.fortunes.h;
+  document.getElementById('mFortuneD').innerText = res.fortunes.d;
+  document.getElementById('mFortuneM').innerText = res.fortunes.m;
+  document.getElementById('mFortuneY').innerText = res.fortunes.y;
 
-  // Five Elements Gauge
-  const gaugeBars = document.getElementById('gaugeBars');
-  if (gaugeBars && gaugeBars.children.length >= 5) {
-    gaugeBars.children[0].style.width = stemData.gauge[0] + '%';
-    gaugeBars.children[1].style.width = stemData.gauge[1] + '%';
-    gaugeBars.children[2].style.width = stemData.gauge[2] + '%';
-    gaugeBars.children[3].style.width = stemData.gauge[3] + '%';
-    gaugeBars.children[4].style.width = stemData.gauge[4] + '%';
-  }
-  const gaugeLegend = document.getElementById('gaugeLegend');
-  if (gaugeLegend) gaugeLegend.innerText = stemData.gauge_text;
+  document.getElementById('mShinsalH').innerText = res.shinsals.h;
+  document.getElementById('mShinsalD').innerText = res.shinsals.d;
+  document.getElementById('mShinsalM').innerText = res.shinsals.m;
+  document.getElementById('mShinsalY').innerText = res.shinsals.y;
 
-  // Chapter 1: Talents
-  const talentSavage = document.getElementById('talentSavage');
-  if (talentSavage) talentSavage.innerText = stemData.savage;
-  
-  const talentsList = document.getElementById('talentsList');
-  if (talentsList) {
-    talentsList.innerHTML = '';
-    stemData.talents.forEach(t => {
-      talentsList.innerHTML += `
-        <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/5 space-y-2">
-          <h4 class="font-extrabold text-amber-300 flex items-center gap-2 text-base">
-            <span>${t.icon}</span> ${t.title}
-          </h4>
-          <p class="leading-relaxed text-slate-300">${t.desc}</p>
-        </div>
-      `;
-    });
-  }
+  // 3. Deep Diagnosis
+  document.getElementById('descGyeokguk').innerText = `${res.gyeokguk.name}: ${res.gyeokguk.desc}`;
+  document.getElementById('descShingang').innerText = res.shingang.desc;
+  document.getElementById('descYongshin').innerText = res.yongshin.desc;
 
-  // Chapter 2: Career
-  const careerSavage = document.getElementById('careerSavage');
-  if (careerSavage) careerSavage.innerText = stemData.career_savage;
-  
-  const badEnvList = document.getElementById('badEnvList');
-  if (badEnvList) {
-    badEnvList.innerHTML = '';
-    stemData.bad_env.forEach(e => { badEnvList.innerHTML += `<li>${e}</li>`; });
-  }
-  const goodEnvList = document.getElementById('goodEnvList');
-  if (goodEnvList) {
-    goodEnvList.innerHTML = '';
-    stemData.good_env.forEach(e => { goodEnvList.innerHTML += `<li>${e}</li>`; });
-  }
+  // 4. Five Elements Gauge & Breakdown
+  document.getElementById('elemCountSummary').innerText = `목 ${res.counts['목']} · 화 ${res.counts['화']} · 토 ${res.counts['토']} · 금 ${res.counts['금']} · 수 ${res.counts['수']}`;
+  document.getElementById('barMok').style.width = `${(res.counts['목'] / 8) * 100}%`;
+  document.getElementById('barHwa').style.width = `${(res.counts['화'] / 8) * 100}%`;
+  document.getElementById('barTo').style.width = `${(res.counts['토'] / 8) * 100}%`;
+  document.getElementById('barGeum').style.width = `${(res.counts['금'] / 8) * 100}%`;
+  document.getElementById('barSu').style.width = `${(res.counts['수'] / 8) * 100}%`;
 
-  const bestJobsList = document.getElementById('bestJobsList');
-  if (bestJobsList) {
-    bestJobsList.innerHTML = '';
-    stemData.jobs.forEach(j => {
-      bestJobsList.innerHTML += `
-        <div class="p-3.5 bg-black/40 rounded-xl border border-white/5">
-          <strong class="text-slate-100 block mb-1 text-sm">${j.title}</strong>
-          <span class="text-slate-300 text-xs">${j.desc}</span>
-        </div>
-      `;
-    });
-  }
-  const wealthTiming = document.getElementById('wealthTiming');
-  if (wealthTiming) wealthTiming.innerText = stemData.wealth;
+  document.getElementById('elemDeficiencyText').innerHTML = res.deficiencyText;
+  document.getElementById('elemExcessText').innerText = res.excessText;
 
-  // Chapter 3: Future Spouse (Real Saju Ten God & Climate Engine)
-  const tenGod = getTenGod(dayStem, dayBranch);
-  const climateKey = getClimate(month);
-  const tenGodData = TEN_GOD_SPOUSE[tenGod] || TEN_GOD_SPOUSE["정관"];
-  const climateData = CLIMATE_SPOUSE[climateKey];
+  // 5. Chapter 1: Talents
+  document.getElementById('talentSavage').innerText = res.stemData.savage;
+  const talentsHtml = res.stemData.talents.map((t, idx) => `
+    <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/5 space-y-1">
+      <div class="font-bold text-amber-300 flex items-center gap-2">
+        <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-300 text-xs flex items-center justify-center font-black">${idx + 1}</span>
+        <span>${t.title}</span>
+      </div>
+      <p class="text-xs sm:text-sm text-slate-300 pl-8 leading-relaxed">${t.desc}</p>
+    </div>
+  `).join('');
+  document.getElementById('talentsList').innerHTML = talentsHtml;
 
-  const spouseSavage = document.getElementById('spouseSavage');
-  if (spouseSavage) {
-    spouseSavage.innerHTML = `“너는 <strong>${climateData.season}</strong>에 태어난 <strong>${stemData.name}</strong>이라, 네 사주의 균형을 맞추려면 <strong>${climateData.needed}</strong>을 가진 사람이 필연적으로 들어와야 한다. 게다가 네 사주 일지에 <strong>‘${tenGod}’</strong>의 기운이 박혀 있으니, 언젠가 네 인생에 들어올 운명의 짝은 <strong>‘${tenGodData.title}’</strong>의 형태를 띨 수밖에 없다.”`;
-  }
+  // 6. Chapter 2: Career
+  const jobsHtml = res.stemData.careers.map((job, idx) => `
+    <div class="p-3 bg-white/[0.02] rounded-xl border border-white/5 flex items-center gap-2 text-slate-200">
+      <span class="text-emerald-400 font-bold">0${idx + 1}</span>
+      <span>${job}</span>
+    </div>
+  `).join('');
+  document.getElementById('bestJobsList').innerHTML = jobsHtml;
 
-  document.getElementById('spouseArchetype').innerText = `“${tenGodData.title}”`;
-  document.getElementById('spouseFullAppearance').innerText = tenGodData.vibe;
-  document.getElementById('spouseFullRole').innerText = tenGodData.role;
-  document.getElementById('spouseFullAge').innerText = tenGodData.age;
-  document.getElementById('spouseFullJob').innerText = tenGodData.jobs;
-  document.getElementById('spouseFullDynamic').innerText = tenGodData.fight;
+  // 7. Chapter 3: Spouse (240 combinations)
+  const spImg = document.getElementById('spouseImg');
+  spImg.src = res.spouse.img;
+  spImg.alt = `미래 배우자 얼굴 (${res.spouse.detail.animal}상)`;
 
-  // Meeting timing and scenario
-  const timingYears = ['2026년 하반기 (양력 10~12월)', '2027년 가을 (양력 9~11월)', '2028년 봄 (양력 3~5월)'];
-  const timingIdx = (year + month + day) % 3;
-  const timingPlace = (tenGod === '식신' || tenGod === '상관' || tenGod === '비견') ?
-    "공통의 취미 모임, 여행지, 맛집이나 전시회에서 우연한 대화로 연결됨" :
-    "업무상 프로젝트, 공식 세미나, 또는 조용한 프라이빗 와인바/북카페에서 시작됨";
-  document.getElementById('spouseFullMeeting').innerText = `${timingYears[timingIdx]} 무렵, ${timingPlace}!`;
+  document.getElementById('spouseArchetype').innerText = `“${res.spouse.detail.animal}상 · ${res.spouse.detail.style}”`;
+  document.getElementById('spouseSavage').innerText = `${res.spouse.season}철에 태어난 ${res.spouse.dayPillarName} 맞춤 처방전: “${res.spouse.detail.animal}상의 기운을 품고 태어난 인연으로, 네 사주의 결핍을 채워주고 인생을 일으켜 세울 운명의 짝이다.”`;
+  document.getElementById('spouseFullAppearance').innerText = `${res.spouse.detail.style}. ${res.spouse.detail.animal}을 닮은 매력적인 눈매와 독보적인 아우라를 지님.`;
+  document.getElementById('spouseFullRole').innerText = `내 사주의 ${res.yongshin.title}을 공급해 주며, 내가 흔들릴 때 든든하게 받쳐주는 인생의 치트키 파트너.`;
+  document.getElementById('spouseFullAge').innerText = res.spouse.detail.age;
+  document.getElementById('spouseFullJob').innerText = res.spouse.detail.jobs;
+  document.getElementById('spouseFullMeeting').innerText = res.spouse.detail.scenario;
+  document.getElementById('spouseFullDynamic').innerText = res.spouse.detail.conflict;
+  document.getElementById('spouseNameTag').innerText = `${res.spouse.detail.animal}상 운명의 짝 (${res.spouse.detail.age})`;
 
-  // Image and Name selection based on Ten God group
-  const spouseImg = document.getElementById('spouseImg');
-  const spouseName = document.getElementById('spouseNameTag');
-  const group = tenGodData.group;
+  // 8. Chapter 4: Shinsal
+  document.getElementById('shinsalTitle').innerText = `${res.shinsals.d} — 사주 원국의 치명적 매력과 기운`;
+  document.getElementById('shinsalDesc').innerText = `너는 사주에 ${res.shinsals.d}이 자리 잡고 있어, 억지로 꾸미지 않아도 특유의 깊은 아우라로 사람들의 시선을 사로잡는 사주다.`;
+  document.getElementById('shinsalRedFlag').innerText = `내 사주의 약점을 파고들어 죄책감을 유발하거나 내 독립성을 옥죄는 가스라이팅형 인물.`;
 
-  const namesM = {
-    'warm': '도현 / 줄리안 (30세 전후)',
-    'leader': '태오 / 마커스 (33세 전후)',
-    'artistic': '준우 / 레오 (29세 전후)',
-    'intellectual': '민우 / 알렉산더 (31세 전후)'
-  };
-  const namesF = {
-    'warm': '다은 / 그레이스 (28세 전후)',
-    'leader': '서아 / 올리비아 (31세 전후)',
-    'artistic': '유나 / 미아 (27세 전후)',
-    'intellectual': '서연 / 클로이 (29세 전후)'
-  };
+  // 9. Chapter 5: AI Prompt
+  document.getElementById('aiPromptText').value = `Cinematic portrait of an East Asian spouse radiating ${res.stemData.name} and ${res.spouse.detail.style}, ${res.spouse.detail.animal}-like charismatic eyes, luxury wardrobe, 8k resolution, Masterpiece --ar 16:9`;
 
-  if (partner === 'female') {
-    if (group === 'leader') spouseImg.src = 'spouse_f_leader.png';
-    else if (group === 'artistic') spouseImg.src = 'spouse_f_artistic.png';
-    else if (group === 'warm') spouseImg.src = 'spouse_f_warm.png';
-    else spouseImg.src = 'spouse_female.png';
-    spouseName.innerText = namesF[group] || '서연 / 클로이 (29세 전후)';
-  } else {
-    if (group === 'leader') spouseImg.src = 'spouse_m_leader.png';
-    else if (group === 'artistic') spouseImg.src = 'spouse_m_artistic.png';
-    else if (group === 'warm') spouseImg.src = 'spouse_m_warm.png';
-    else spouseImg.src = 'spouse_male.png';
-    spouseName.innerText = namesM[group] || '민우 / 알렉산더 (31세 전후)';
-  }
-
-  // Chapter 4: Shinsal / Peach Blossom
-  let shinsalKey = '도화';
-  if (['자', '오', '묘', '유'].includes(dayBranch)) {
-    shinsalKey = '도화';
-  } else if (['인', '신', '사', '해'].includes(dayBranch)) {
-    shinsalKey = '역마';
-  } else {
-    shinsalKey = '화개';
-  }
-  const sData = SHINSAL_DATA[shinsalKey];
-  document.getElementById('shinsalTitle').innerText = sData.name;
-  document.getElementById('shinsalDesc').innerText = sData.desc;
-  document.getElementById('shinsalTrigger').innerText = sData.trigger;
-  document.getElementById('shinsalRedFlag').innerText = sData.red_flag;
-  document.getElementById('shinsalTiming').innerText = sData.timing;
-
-  // Chapter 5: Prompt
-  document.getElementById('aiPromptText').value = `A high-fashion cinematic portrait character design sheet of an East Asian visionary radiating ${stemData.name} and ${spouseData.type} energy, quiet aristocratic elegance, deep mysterious eyes, subtle jade and obsidian silk garments, delicate paper lantern lighting, soft smoky haze, Korean aesthetic manhwa realism, 8k resolution, Masterpiece --ar 16:9`;
-
-  // Show results area smoothly
+  // Show Results Area Smoothly
   document.getElementById('resultsArea').classList.remove('hidden');
   document.getElementById('resultsArea').scrollIntoView({ behavior: 'smooth' });
 }
@@ -690,7 +653,6 @@ function copyPrompt() {
   const copyText = document.getElementById("aiPromptText");
   copyText.select();
   navigator.clipboard.writeText(copyText.value);
-  
   const btn = document.getElementById("copyBtn");
   btn.innerText = "복사 완료! ✨";
   setTimeout(() => { btn.innerText = "프롬프트 복사하기"; }, 2000);
