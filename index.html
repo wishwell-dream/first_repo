@@ -137,10 +137,10 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div>
             <label class="block text-xs font-medium text-slate-300 mb-1.5 uppercase tracking-wider">Birth Time</label>
-            <select id="birthHour" class="w-full bg-black/40 border border-white/15 rounded-xl px-3 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-amber-400 transition">
+            <select id="birthHour" class="w-full bg-black/40 border border-white/15 rounded-xl px-3 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-amber-400 transition">
               <option value="unknown">I don't know my time</option>
               <option value="23-1">23:30 - 01:29 (Rat / 자시)</option>
               <option value="1-3">01:30 - 03:29 (Ox / 축시)</option>
@@ -158,10 +158,19 @@
           </div>
           <div>
             <label class="block text-xs font-medium text-slate-300 mb-1.5 uppercase tracking-wider">Looking for Partner</label>
-            <select id="partnerGender" class="w-full bg-black/40 border border-white/15 rounded-xl px-3 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-amber-400 transition">
+            <select id="partnerGender" class="w-full bg-black/40 border border-white/15 rounded-xl px-3 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-amber-400 transition">
               <option value="male">Husband / Men</option>
               <option value="female">Wife / Women</option>
               <option value="any">Any / Open</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1.5 uppercase tracking-wider">Soulmate Ethnicity / Origin</label>
+            <select id="preferredEthnicity" class="w-full bg-black/40 border border-white/15 rounded-xl px-3 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-amber-400 transition">
+              <option value="destiny" selected>🌍 Let Destiny Decide (Saju Wandering Star)</option>
+              <option value="western">🇺🇸 Western / European Chic (Caucasian)</option>
+              <option value="korean">🇰🇷 Korean / K-Drama Chic Aesthetic</option>
+              <option value="global">✨ Multicultural / Global Exotic Mixed</option>
             </select>
           </div>
         </div>
@@ -265,6 +274,13 @@
               <div class="flex items-start gap-2">
                 <span class="text-amber-400 font-bold">✓</span>
                 <span><strong>Ideal Age Gap:</strong> <span id="spouseAgeIndex">1~3 years younger or same-age kindred soul.</span></span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-purple-400 font-bold">🌐</span>
+                <span><strong>Origin & Karma:</strong> <span id="spouseEthnicIndex" class="text-amber-300 font-medium">Cross-Border Fated Match</span> (<span id="spouseInternationalIndex" class="text-purple-300 font-bold">88%</span>)</span>
+              </div>
+              <div class="p-3 bg-white/[0.02] rounded-xl border border-white/5 text-xs text-slate-300 italic" id="spouseGlobalInsight">
+                Your chart carries the Great Wandering Star...
               </div>
             </div>
 
@@ -610,7 +626,8 @@ function calculateSaju(event) {
   const partner = document.getElementById('partnerGender').value;
 
   const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-  const res = executeFullAnalysis(dateStr, hourVal, 'neutral', partner);
+  const ethnicity = document.getElementById('preferredEthnicity') ? document.getElementById('preferredEthnicity').value : 'destiny';
+  const res = executeFullAnalysis(dateStr, hourVal, 'neutral', partner, ethnicity);
   lastSajuResult = res;
   updateTokenDisplay();
   const en = getAnalysisEN(res);
@@ -642,6 +659,9 @@ function calculateSaju(event) {
   document.getElementById('spouseCareerIndex').innerText = res.spouse.detail.jobs;
   document.getElementById('spouseDynamicIndex').innerText = res.spouse.detail.conflict;
   document.getElementById('spouseAgeIndex').innerText = res.spouse.detail.age;
+  document.getElementById('spouseEthnicIndex').innerText = res.spouse.ethnicLabelEN;
+  document.getElementById('spouseInternationalIndex').innerText = res.spouse.internationalScore;
+  document.getElementById('spouseGlobalInsight').innerText = res.spouse.internationalInsightEN;
   document.getElementById('spouseMeetingIndex').innerText = `First meeting: ${res.spouse.detail.scenario}`;
   document.getElementById('spouseNameIndex').innerText = `${res.spouse.detail.animal} Companion (${res.spouse.detail.age})`;
 

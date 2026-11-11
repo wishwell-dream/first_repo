@@ -709,7 +709,7 @@ function getWealthTiming(dayStem, gyeok, climate) {
   return '20대 후반의 시행착오를 거쳐 30대 중반으로 넘어가며 인생의 황금기 대운이 도래한다. 남들이 흉내 낼 수 없는 나만의 독점 영역이 구축된다.';
 }
 
-function executeFullAnalysis(dateStr, timeVal, gender, partner) {
+function executeFullAnalysis(dateStr, timeVal, gender, partner, preferredEthnicity = 'destiny') {
   const p = getPillars(dateStr, timeVal);
   const dayStem = p.day.stem;
   const dayBranch = p.day.branch;
@@ -789,11 +789,55 @@ function executeFullAnalysis(dateStr, timeVal, gender, partner) {
   const localImgFallback = partner === 'female' ? `spouse_f_${branchKey}.png` : `spouse_m_${branchKey}.png`;
   const spouseRole = SPOUSE_ROLE_BY_SHIPSHIN[branchShipshinD] || '내 부족한 오행을 채워주고 인생의 균형을 잡아주는 최고의 조력자.';
 
+  // Calculate International Marriage & Cross-Border Destiny Karma
+  const hasYeokma = shinD.includes('역마살') || shinM.includes('역마살') || shinY.includes('역마살') || ['인', '신', '사', '해'].includes(dayBranch);
+  const internationalScore = hasYeokma ? Math.floor(82 + (Math.abs(p.year.stem.charCodeAt(0) * 7) % 15)) : Math.floor(45 + (Math.abs(p.year.stem.charCodeAt(0) * 3) % 25));
+
+  let ethnicLabel = '사주 역마살 자동 판별';
+  let ethnicLabelEN = 'Destiny Decides (Saju Wandering Star)';
+  let promptEthnicity = 'East Asian Korean';
+  let internationalInsight = '';
+  let internationalInsightEN = '';
+
+  if (preferredEthnicity === 'western') {
+    ethnicLabel = '서구권 / 유러피언 훈남·훈녀 (Caucasian / Western)';
+    ethnicLabelEN = 'Western / Caucasian European Soulmate';
+    promptEthnicity = 'Caucasian European';
+    internationalInsight = '당신의 사주는 바다 건너 서구적 문화권의 자유로운 영혼과 전생의 깊은 카르마가 연결되어 있습니다. 언어와 국경을 넘어 깊은 지적·정서적 티키타카가 통하는 운명입니다.';
+    internationalInsightEN = 'Your destiny carries a cross-continental soul connection with the Western cultural sphere. Unbound by traditional borders, you thrive with a partner who values radical personal freedom, sharp intellectual banter, and worldly curiosity.';
+  } else if (preferredEthnicity === 'global') {
+    ethnicLabel = '매력적인 이국적 다인종 / 글로벌 인연 (Exotic Multicultural)';
+    ethnicLabelEN = 'Exotic Multicultural / Global Soulmate';
+    promptEthnicity = 'attractive multi-ethnic mixed international';
+    internationalInsight = '당신의 배우자궁은 다양한 문화와 언어가 교차하는 글로벌 무대에서 가장 환하게 빛납니다. 이국적인 매력과 열린 세계관을 가진 인연과 강력하게 이어집니다.';
+    internationalInsightEN = 'Your marital palace is blessed under multicultural celestial crossroads. You are magnetic to an exotic, multi-ethnic partner who navigates multiple worlds, languages, and creative scenes with charismatic ease.';
+  } else if (preferredEthnicity === 'korean') {
+    ethnicLabel = '한국인 / K-컬처 정통 훈남·훈녀 (Korean Aesthetic)';
+    ethnicLabelEN = 'Korean / K-Drama Chic Aesthetic';
+    promptEthnicity = 'East Asian Korean';
+    internationalInsight = '당신의 사주는 같은 문화적 토양과 고유의 정서를 깊이 공유할 때 가장 안정적인 가정을 꾸립니다. K-드라마 주인공처럼 섬세하고 다정한 한국인 인연입니다.';
+    internationalInsightEN = 'Your chart finds deepest harmony rooted in the timeless elegance of Korean culture. You share an unspoken intuitive emotional language with an aesthetically refined, deeply caring Korean partner.';
+  } else {
+    if (hasYeokma) {
+      ethnicLabel = '글로벌 국경초월 인연 (역마살 발현 · 서구/다문화 글로벌상)';
+      ethnicLabelEN = `Cross-Border Global Fated Match (${internationalScore}% International Karma)`;
+      promptEthnicity = 'charismatic Western or international mixed';
+      internationalInsight = `사주 원국에 강렬한 역마살(驛馬煞)과 이동수가 살아있어, 국내에 머물기보다 외국인, 교포, 혹은 해외 유학/글로벌 커리어를 가진 이국적 배우자와 만날 확률이 ${internationalScore}%에 달합니다!`;
+      internationalInsightEN = `Your Four Pillars are ignited by the Great Wandering Star (Yeokma-Sal). You are fated not for an ordinary domestic bond, but an international, globetrotting partner born across oceans (${internationalScore}% International Karma Index).`;
+    } else {
+      ethnicLabel = '국내 및 동아시아 문화권 인연 (정착형 안정 케미)';
+      ethnicLabelEN = `East Asian Kindred Soul (${internationalScore}% Domestic Stability)`;
+      promptEthnicity = 'East Asian Korean';
+      internationalInsight = '배우자궁이 안정적인 기운으로 묶여 있어, 문화적 공감대가 깊고 가족적 가치관이 일치하는 한국인/동아시아권 인연과 최상의 결합을 이룹니다.';
+      internationalInsightEN = 'Your marital palace is anchored in domestic harmony and cultural affinity, thriving with an East Asian partner of shared traditional depth and emotional steadiness.';
+    }
+  }
+
   // 100% Live Real-Time AI Image Generation URL (Unique seed for every single reading)
   const uniqueSeed = Math.floor(Date.now() % 900000 + Math.random() * 100000);
-  const genderTerm = partner === 'female' ? 'stunning 22yo Korean woman' : 'handsome 25yo Korean man';
-  const animalConcept = `${spDetail.animal} animal facial features and energy, ${spDetail.style}`;
-  const liveAiPrompt = `studio close-up headshot portrait photo of an attractive ${genderTerm}, subtle ${animalConcept}, refined facial harmony, soft rim lighting, neutral clean background, 8k resolution, photorealistic`;
+  const genderTerm = partner === 'female' ? '22yo woman' : '25yo man';
+  const animalConcept = `${spDetail.animal} animal facial features, ${spDetail.style}`;
+  const liveAiPrompt = `studio close-up headshot portrait photo of an attractive ${promptEthnicity} ${genderTerm}, subtle ${animalConcept}, natural refined skin texture, 85mm portrait lens, soft rim lighting, neutral clean background, 8k resolution, photorealistic`;
   const liveAiImgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(liveAiPrompt)}?width=800&height=1000&nologo=true&seed=${uniqueSeed}`;
 
   let loveKey = '도화살';
@@ -831,6 +875,11 @@ function executeFullAnalysis(dateStr, timeVal, gender, partner) {
       localFallback: localImgFallback,
       seed: uniqueSeed,
       season: p.climate,
+      ethnicLabel,
+      ethnicLabelEN,
+      internationalScore: internationalScore + '%',
+      internationalInsight,
+      internationalInsightEN,
       dayPillarName: `${p.day.stem}${p.day.branch}일주`,
       hanjaPillarName: `${p.day.stemHanja}${p.day.branchHanja} (日柱)`
     }

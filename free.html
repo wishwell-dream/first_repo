@@ -135,10 +135,10 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div>
             <label class="block text-xs font-bold text-slate-300 mb-1.5">태어난 시간 (시주)</label>
-            <select id="birthHour" class="w-full bg-black/50 border border-white/15 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-slate-100 focus:outline-none focus:border-amber-400 transition">
+            <select id="birthHour" class="w-full bg-black/50 border border-white/15 rounded-xl px-3 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-amber-400 transition">
               <option value="unknown">태어난 시간 모름</option>
               <option value="23-1">23:30 ~ 01:29 (자시)</option>
               <option value="1-3">01:30 ~ 03:29 (축시)</option>
@@ -156,9 +156,18 @@
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-300 mb-1.5">만나고 싶은 배우자</label>
-            <select id="partnerGender" class="w-full bg-black/50 border border-white/15 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-slate-100 focus:outline-none focus:border-amber-400 transition">
+            <select id="partnerGender" class="w-full bg-black/50 border border-white/15 rounded-xl px-3 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-amber-400 transition">
               <option value="male" selected>남편 / 남성</option>
               <option value="female">아내 / 여성</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-300 mb-1.5">배우자 인종 & 국경 운명</label>
+            <select id="preferredEthnicityKo" class="w-full bg-black/50 border border-white/15 rounded-xl px-3 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-amber-400 transition">
+              <option value="destiny" selected>🌍 사주 역마살 운명에 맡김 (글로벌 자동)</option>
+              <option value="korean">🇰🇷 한국인 / K-컬처 정통 훈남·훈녀</option>
+              <option value="western">🇺🇸 서구권 / 백인계 유러피언 훈남·훈녀</option>
+              <option value="global">✨ 이국적 글로벌 다인종 인연</option>
             </select>
           </div>
         </div>
@@ -436,6 +445,11 @@
               <span class="text-purple-300 font-extrabold block mb-1">🔥 둘이 부딪힐 때 (부부 케미 & 화해법)</span>
               <span id="spouseFullDynamic">크게 싸울 일 없이 맛있는 거 하나 쥐여주면 5분 만에 풀리는 평화주의 케미</span>
             </div>
+            <div class="p-3.5 bg-black/40 rounded-xl border border-white/5">
+              <span class="text-amber-300 font-extrabold block mb-1">🌐 국경 초월 글로벌 인연 지수 & 출신 운명</span>
+              <span id="spouseEthnicKo" class="text-amber-200 font-bold">글로벌 국경초월 인연</span> (<span id="spouseInternationalKo" class="text-purple-300 font-extrabold">88%</span>)
+              <p id="spouseGlobalInsightKo" class="text-xs text-slate-300 mt-1 italic leading-relaxed"></p>
+            </div>
           </div>
 
           <!-- Portrait Image Right -->
@@ -682,7 +696,8 @@ function calculateSaju(event) {
   const partner = document.getElementById('partnerGender').value;
 
   const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-  const res = executeFullAnalysis(dateStr, hourVal, 'neutral', partner);
+  const ethnicity = document.getElementById('preferredEthnicityKo') ? document.getElementById('preferredEthnicityKo').value : 'destiny';
+  const res = executeFullAnalysis(dateStr, hourVal, 'neutral', partner, ethnicity);
   lastSajuResultKo = res;
 
   // 1. Board Header & Badges
@@ -788,6 +803,9 @@ function calculateSaju(event) {
   document.getElementById('spouseFullJob').innerText = res.spouse.detail.jobs;
   document.getElementById('spouseFullMeeting').innerText = res.spouse.detail.scenario;
   document.getElementById('spouseFullDynamic').innerText = res.spouse.detail.conflict;
+  document.getElementById('spouseEthnicKo').innerText = res.spouse.ethnicLabel;
+  document.getElementById('spouseInternationalKo').innerText = res.spouse.internationalScore;
+  document.getElementById('spouseGlobalInsightKo').innerText = res.spouse.internationalInsight;
   document.getElementById('spouseNameTag').innerText = `${res.spouse.detail.animal}상 운명의 짝 (${res.spouse.detail.age})`;
 
   // 8. Chapter 4: Shinsal & Love
