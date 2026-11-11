@@ -46,7 +46,7 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
   </style>
-  <script src="saju_data.js?v=20261111_05"></script>
+  <script src="saju_data.js?v=20261111_06"></script>
 </head>
 <body class="smoke-bg min-h-screen selection:bg-amber-500/30 selection:text-amber-200">
 
@@ -843,7 +843,6 @@ function calculateSaju(event) {
     document.getElementById('soulCardElemDesc').innerText = res.auraCard.elemDesc;
     document.getElementById('soulCardStyleDesc').innerText = res.auraCard.styleDesc;
   }
-  document.getElementById('aiPromptText').value = `Cinematic portrait of an East Asian spouse radiating ${res.stemData.name} and ${res.spouse.detail.style}, ${res.spouse.detail.animal}-like charismatic eyes, luxury wardrobe, 8k resolution, Masterpiece --ar 16:9`;
 
   // Show Results Area Smoothly
   document.getElementById('resultsArea').classList.remove('hidden');
