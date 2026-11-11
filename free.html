@@ -635,7 +635,7 @@ function regenerateSpouseAiFaceKo() {
 
   const newSeed = Math.floor(Math.random() * 899999 + 100000);
   setTimeout(() => {
-    img.src = newUrl;
+    img.src = newUrl + '?v=clean_' + Date.now();
     if (seedNum) seedNum.innerText = `#${newSeed}`;
     if (spinner) spinner.classList.add('hidden');
   }, 350);
@@ -785,7 +785,7 @@ function calculateSaju(event) {
 
   // 7. Chapter 3: Spouse (240 combinations)
   const spImg = document.getElementById('spouseImg');
-  spImg.src = res.spouse.img;
+  spImg.src = res.spouse.img + '?v=clean_eunwoo_' + Date.now();
   if (document.getElementById('spouseSeedKo')) {
     document.getElementById('spouseSeedKo').innerText = '#' + res.spouse.seed;
   }

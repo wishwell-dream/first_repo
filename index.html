@@ -564,7 +564,7 @@ function regenerateSpouseAiFace() {
 
   const newSeed = Math.floor(Math.random() * 899999 + 100000);
   setTimeout(() => {
-    img.src = newUrl;
+    img.src = newUrl + '?v=clean_' + Date.now();
     if (seedNum) seedNum.innerText = `#${newSeed}`;
     if (spinner) spinner.classList.add('hidden');
   }, 350);
@@ -665,7 +665,7 @@ function calculateSaju(event) {
   document.getElementById('spouseNameIndex').innerText = `${res.spouse.detail.animal} Companion (${res.spouse.detail.age})`;
 
   const spouseImg = document.getElementById('spouseImgIndex');
-  spouseImg.src = res.spouse.img;
+  spouseImg.src = res.spouse.img + '?v=clean_eunwoo_' + Date.now();
   if (document.getElementById('spouseSeedNum')) {
     document.getElementById('spouseSeedNum').innerText = '#' + res.spouse.seed;
   }
