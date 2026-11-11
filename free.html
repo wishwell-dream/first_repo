@@ -46,6 +46,7 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
   </style>
+  <script src="saju_data.js"></script>
 </head>
 <body class="smoke-bg min-h-screen selection:bg-amber-500/30 selection:text-amber-200">
 
@@ -1224,6 +1225,33 @@ const SHINSAL_DATA = {
     "timing": "2027년, 오랫동안 알고 지낸 지인이나 깊은 대화가 통하는 소울메이트와의 관계가 급진전된다."
   }
 };
+
+
+function getTenGod(dStem, dBranch) {
+  const stemElem = {'갑': '목', '을': '목', '병': '화', '정': '화', '무': '토', '기': '토', '경': '금', '신': '금', '임': '수', '계': '수'};
+  const stemPol = {'갑': 1, '을': -1, '병': 1, '정': -1, '무': 1, '기': -1, '경': 1, '신': -1, '임': 1, '계': -1};
+  const branchElem = {'자': '수', '축': '토', '인': '목', '묘': '목', '진': '토', '사': '화', '오': '화', '미': '토', '신': '금', '유': '금', '술': '토', '해': '수'};
+  const branchPol = {'자': 1, '축': -1, '인': 1, '묘': -1, '진': 1, '사': -1, '오': 1, '미': -1, '신': 1, '유': -1, '술': 1, '해': -1};
+  const elemOrder = ['목', '화', '토', '금', '수'];
+
+  const sE = stemElem[dStem];
+  const bE = branchElem[dBranch];
+  const samePol = (stemPol[dStem] === branchPol[dBranch]);
+
+  if (sE === bE) return samePol ? "비견" : "겁재";
+  if ((elemOrder.indexOf(bE) - elemOrder.indexOf(sE) + 5) % 5 === 1) return samePol ? "식신" : "상관";
+  if ((elemOrder.indexOf(bE) - elemOrder.indexOf(sE) + 5) % 5 === 2) return samePol ? "편재" : "정재";
+  if ((elemOrder.indexOf(sE) - elemOrder.indexOf(bE) + 5) % 5 === 2) return samePol ? "편관" : "정관";
+  if ((elemOrder.indexOf(sE) - elemOrder.indexOf(bE) + 5) % 5 === 1) return samePol ? "편인" : "정인";
+  return "정관";
+}
+
+function getClimate(month) {
+  if (month === 12 || month === 1 || month === 2) return "겨울";
+  if (month >= 3 && month <= 5) return "봄";
+  if (month >= 6 && month <= 8) return "여름";
+  return "가을";
+}
 
 function calculateSaju(event) {
   event.preventDefault();
