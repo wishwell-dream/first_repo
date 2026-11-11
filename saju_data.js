@@ -931,8 +931,6 @@ function executeFullAnalysis(dateStr, timeVal, gender, partner, preferredEthnici
     spouseImgPath = partner === 'female' ? 'spouse_f_western.png' : 'spouse_m_western.png';
   } else if (preferredEthnicity === 'global') {
     spouseImgPath = partner === 'female' ? 'spouse_f_global.png' : 'spouse_m_global.png';
-  } else if (preferredEthnicity === 'destiny' && hasYeokma) {
-    spouseImgPath = partner === 'female' ? 'spouse_f_western.png' : 'spouse_m_western.png';
   }
 
   let loveKey = '도화살';
