@@ -46,7 +46,7 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
   </style>
-  <script src="saju_data.js?v=20261111_04"></script>
+  <script src="saju_data.js?v=20261111_05"></script>
 </head>
 <body class="smoke-bg min-h-screen selection:bg-amber-500/30 selection:text-amber-200">
 
@@ -520,18 +520,38 @@
           <p id="oracleText" class="font-bold text-amber-300 leading-relaxed">“기억해라. 너는 남들이 만들어놓은 좁은 틀에 억지로 몸을 구겨 넣을 때 제일 못생겨진다.”</p>
         </div>
 
-        <!-- AI Avatar Prompt Box -->
-        <div class="p-5 rounded-2xl bg-black/60 border border-purple-500/30 space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-xs uppercase tracking-wider text-purple-300 font-bold flex items-center gap-1.5">
-              <span>✨</span> 내 사주 아우라 미드저니 / 챗GPT AI 프롬프트
-            </span>
-            <button onclick="copyPrompt()" id="copyBtn" class="px-3.5 py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition shadow-md">
-              프롬프트 복사하기
-            </button>
+        <!-- 내 사주 고유 오행 소울 카드 (완성형 고화질 카드) -->
+        <div class="card-glass rounded-3xl p-6 sm:p-8 border border-purple-500/40 relative overflow-hidden shadow-2xl space-y-4">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
+            <div>
+              <span class="text-xs uppercase tracking-widest text-purple-300 font-black bg-purple-500/10 px-2.5 py-1 rounded-full border border-purple-500/30">
+                ✨ 내 사주 오행 소울 아우라 카드
+              </span>
+              <h4 class="text-lg font-bold text-slate-100 mt-2">미드저니 갈 필요 없이, 내 사주 명식으로 완성된 고해상도 소울 프로필</h4>
+            </div>
+            <a id="downloadAuraBtn" href="aura_earth.png" download="my_saju_soul_card.png" class="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-amber-500 text-black font-extrabold text-xs hover:brightness-110 transition shadow-lg flex items-center gap-1.5 shrink-0">
+              <span>📥</span> 소울 카드 다운로드
+            </a>
           </div>
-          <textarea id="aiPromptText" readonly rows="4" class="w-full bg-slate-950/90 border border-white/10 rounded-xl p-3 text-xs text-slate-300 font-mono focus:outline-none resize-none">A high-fashion cinematic portrait character design sheet of an East Asian visionary radiating Yang Earth and Water Peach Blossom Saju aura, quiet aristocratic elegance, deep mysterious eyes, subtle jade and obsidian silk garments, delicate paper lantern lighting, soft smoky haze, Korean aesthetic manhwa realism, 8k resolution, Masterpiece --ar 16:9</textarea>
-          <div class="text-[11px] text-slate-400">챗GPT나 미드저니에 붙여넣으면 내 사주 기운을 닮은 AI 소울 프로필이 생성됩니다!</div>
+
+          <div class="flex flex-col sm:flex-row items-center gap-6 pt-2">
+            <div class="w-full sm:w-1/2 max-w-xs rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black/40">
+              <img id="soulCardImg" src="aura_earth.png" alt="내 사주 소울 아우라 카드" class="w-full h-auto object-cover hover:scale-[1.02] transition duration-300">
+            </div>
+            <div class="w-full sm:w-1/2 space-y-3 text-xs sm:text-sm text-slate-300">
+              <div class="p-3.5 bg-white/[0.03] rounded-2xl border border-white/5 space-y-1">
+                <span class="text-amber-300 font-bold block">👑 사주 오행 정체성</span>
+                <span id="soulCardElemDesc" class="text-slate-200 leading-relaxed block">태산처럼 단단하고 묵직한 카리스마의 양토(陽土) 기운.</span>
+              </div>
+              <div class="p-3.5 bg-white/[0.03] rounded-2xl border border-white/5 space-y-1">
+                <span class="text-purple-300 font-bold block">💎 추천 럭키 컬러 & 스타일</span>
+                <span id="soulCardStyleDesc" class="text-slate-200 leading-relaxed block">골드, 딥 앰버, 중후한 어스톤 & 하이엔드 실크 슈트.</span>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed pt-1">
+                ※ 프롬프트 복사해서 다른 사이트 헤맬 필요 없이, 내 사주 원국 기운을 담아 완성된 실물 소울 프로필 카드입니다. 바로 폰에 저장하거나 배경화면, SNS 프로필로 소장하세요!
+              </p>
+            </div>
+          </div>
         </div>
 
         <!-- 🔮 천도령 1:1 실시간 AI 비밀 상담실 (토큰 차감 시스템) -->
@@ -815,8 +835,14 @@ function calculateSaju(event) {
   document.getElementById('shinsalRedFlag').innerText = res.loveData.redFlag;
   document.getElementById('shinsalTiming').innerText = res.loveData.timing;
 
-  // 9. Chapter 5: Oracle & AI Prompt
+  // 9. Chapter 5: Oracle & Soul Card
   document.getElementById('oracleText').innerText = res.dynamicSavages.oracle;
+  if (res.auraCard) {
+    document.getElementById('soulCardImg').src = res.auraCard.img + '?v=' + Date.now();
+    document.getElementById('downloadAuraBtn').href = res.auraCard.img;
+    document.getElementById('soulCardElemDesc').innerText = res.auraCard.elemDesc;
+    document.getElementById('soulCardStyleDesc').innerText = res.auraCard.styleDesc;
+  }
   document.getElementById('aiPromptText').value = `Cinematic portrait of an East Asian spouse radiating ${res.stemData.name} and ${res.spouse.detail.style}, ${res.spouse.detail.animal}-like charismatic eyes, luxury wardrobe, 8k resolution, Masterpiece --ar 16:9`;
 
   // Show Results Area Smoothly

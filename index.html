@@ -60,7 +60,7 @@
       background: radial-gradient(circle at 50% 20%, rgba(20, 30, 45, 0.7) 0%, rgba(7, 8, 11, 0.95) 80%);
     }
   </style>
-  <script src="saju_data.js?v=20261111_04"></script>
+  <script src="saju_data.js?v=20261111_05"></script>
 </head>
 <body class="smoke-bg min-h-screen selection:bg-amber-500/30 selection:text-amber-200">
 
@@ -310,7 +310,7 @@
               <div class="absolute inset-0 flex flex-col items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
                 <span class="text-2xl mb-1">🔒</span>
                 <div class="text-sm font-bold text-amber-300">Unlock Full Future Spouse Portrait</div>
-                <p class="text-[11px] text-slate-300 max-w-xs mt-1 mb-3">Get exact meeting year, personality red flags, and the complete AI Midjourney prompt.</p>
+                <p class="text-[11px] text-slate-300 max-w-xs mt-1 mb-3">Get exact meeting year, personality red flags, and your high-fashion Saju Soul Card.</p>
                 <button onclick="openCheckout('spouse')" class="px-5 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-lg shadow-amber-500/20 transition">
                   Unlock for Only $0.99 →
                 </button>
@@ -378,26 +378,38 @@
         </div>
       </div>
 
-      <!-- TAB 4: PERSONAL AURA & AI AVATAR -->
+      <!-- TAB 4: PERSONAL AURA & SOUL CARD -->
       <div id="content-aura" class="tab-content hidden space-y-6">
-        <div class="bg-slate-900/80 border border-white/10 rounded-3xl p-6 sm:p-8">
-          <h3 class="text-2xl font-bold cinzel text-purple-300 mb-2">🕯️ <span id="auraTitleText">The Mystic Lotus: Your True Aesthetic Aura</span></h3>
-          <p id="auraDescText" class="text-sm text-slate-300 leading-relaxed mb-6">
-            In ancient Korea, your star represented the solitary philosopher, profound artistic insight, and an aristocratic vibe that people dare not disrespect.
-          </p>
-
-          <!-- Prompt Box with 1-Click Copy -->
-          <div class="p-5 rounded-2xl bg-black/60 border border-purple-500/30 space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-xs uppercase tracking-wider text-purple-300 font-bold flex items-center gap-1.5">
-                <span>✨</span> Your Tailored Midjourney / ChatGPT AI Prompt
-              </span>
-              <button onclick="copyPrompt()" id="copyBtn" class="px-3 py-1 rounded-lg bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold transition">
-                Copy Prompt
-              </button>
+        <div class="bg-slate-900/80 border border-white/10 rounded-3xl p-6 sm:p-8 space-y-6">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
+            <div>
+              <h3 class="text-2xl font-bold cinzel text-purple-300 mb-1">🕯️ <span id="auraTitleText">The Mystic Lotus: Your True Aesthetic Aura</span></h3>
+              <p id="auraDescText" class="text-sm text-slate-300 leading-relaxed">
+                In ancient Korea, your star represented the solitary philosopher, profound artistic insight, and an aristocratic vibe that people dare not disrespect.
+              </p>
             </div>
-            <textarea id="aiPromptText" readonly rows="4" class="w-full bg-slate-950/80 border border-white/10 rounded-xl p-3 text-xs text-slate-300 font-mono focus:outline-none resize-none">A high-fashion cinematic portrait character design sheet of a person radiating Yang Earth and Water Peach Blossom Saju aura, quiet aristocratic elegance, deep mysterious eyes, subtle jade and obsidian silk garments, delicate paper lantern lighting, soft smoky haze, Korean aesthetic manhwa realism, 8k resolution, Masterpiece --ar 16:9</textarea>
-            <div class="text-[11px] text-slate-400 italic">Paste this directly into ChatGPT or Midjourney to generate your exact Saju soul avatar!</div>
+            <a id="downloadAuraBtnEn" href="aura_earth.png" download="my_saju_soul_card.png" class="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-amber-500 text-black font-extrabold text-xs hover:brightness-110 transition shadow-lg flex items-center gap-1.5 shrink-0">
+              <span>📥</span> Download Soul Card
+            </a>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center gap-6 pt-2">
+            <div class="w-full sm:w-1/2 max-w-xs rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black/40">
+              <img id="soulCardImgEn" src="aura_earth.png" alt="Saju Soul Aura Card" class="w-full h-auto object-cover hover:scale-[1.02] transition duration-300">
+            </div>
+            <div class="w-full sm:w-1/2 space-y-3 text-xs sm:text-sm text-slate-300">
+              <div class="p-4 bg-white/[0.03] rounded-2xl border border-white/5 space-y-1">
+                <span class="text-amber-300 font-bold block">👑 Elemental Identity</span>
+                <span id="soulCardElemDescEn" class="text-slate-200 leading-relaxed block">Grounded authority, steadfast wisdom, and regal Yang Earth presence.</span>
+              </div>
+              <div class="p-4 bg-white/[0.03] rounded-2xl border border-white/5 space-y-1">
+                <span class="text-purple-300 font-bold block">💎 Lucky Colors & Aesthetic Direction</span>
+                <span id="soulCardStyleDescEn" class="text-slate-200 leading-relaxed block">Deep amber, obsidian silk, warm gold embroidery & quiet luxury.</span>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed pt-1">
+                ※ No need to visit Midjourney or Discord. This is your finished, ready-to-save high-resolution Saju Soul Collector Card. Save it directly to your camera roll or share to social stories!
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -686,10 +698,15 @@ function calculateSaju(event) {
   document.getElementById('careerWeaponText').innerText = en.stemEN.weapon;
   document.getElementById('careerTrapText').innerText = en.stemEN.trap;
 
-  // 6. Tab 4: Personal Aura & AI Avatar
+  // 6. Tab 4: Personal Aura & Soul Card
   document.getElementById('auraTitleText').innerText = en.stemEN.auraTitle;
   document.getElementById('auraDescText').innerText = en.stemEN.auraDesc;
-  document.getElementById('aiPromptText').value = en.prompt;
+  if (res.auraCard) {
+    document.getElementById('soulCardImgEn').src = res.auraCard.img + '?v=' + Date.now();
+    document.getElementById('downloadAuraBtnEn').href = res.auraCard.img;
+    document.getElementById('soulCardElemDescEn').innerText = res.auraCard.elemDescEN;
+    document.getElementById('soulCardStyleDescEn').innerText = res.auraCard.styleDescEN;
+  }
 
   // Show results area smoothly
   document.getElementById('resultsArea').classList.remove('hidden');
@@ -740,7 +757,7 @@ function openCheckout(tier) {
 
   if (tier === 'spouse') {
     title.innerText = "Chamber of Destined Spouse";
-    desc.innerText = "Unlock your soulmate's full face portrait, exact meeting year & month, personality red flags, and high-fashion AI Midjourney prompt.";
+    desc.innerText = "Unlock your soulmate's full face portrait, exact meeting year & month, personality red flags, and your high-fashion Saju Soul Card.";
     price.innerText = "$0.99 USD";
     currentAmount = '0.99';
   } else if (tier === 'deep') {

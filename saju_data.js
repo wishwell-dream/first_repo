@@ -958,8 +958,55 @@ function executeFullAnalysis(dateStr, timeVal, gender, partner, preferredEthnici
 
   const wealthTiming = getWealthTiming(dayStem, gyeokData.name, p.climate);
 
+  const stemElem = STEM_ELEM[dayStem] || '토';
+  let auraImg = 'aura_earth.png';
+  let auraElemDesc = '태산처럼 단단하고 묵직한 카리스마의 양토(陽土) 기운.';
+  let auraStyleDesc = '골드, 딥 앰버, 중후한 어스톤 & 하이엔드 실크 슈트.';
+  let auraElemDescEN = 'Grounded authority, steadfast wisdom, and regal Yang Earth presence.';
+  let auraStyleDescEN = 'Deep amber, obsidian silk, warm gold embroidery & quiet luxury.';
+
+  if (stemElem === '목') {
+    auraImg = 'aura_wood.png';
+    auraElemDesc = '푸른 숲처럼 생명력 넘치고 세상을 이롭게 하는 청명한 목(木) 기운.';
+    auraStyleDesc = '포레스트 그린, 비취 에메랄드, 보태니컬 실크 & 댄디 룩.';
+    auraElemDescEN = 'Botanical nobility, visionary growth, and clear noble Wood energy.';
+    auraStyleDescEN = 'Forest green, jade silk, ivory linen & poetic tailored aesthetics.';
+  } else if (stemElem === '화') {
+    auraImg = 'aura_fire.png';
+    auraElemDesc = '세상을 밝게 비추고 판을 집어삼키는 뜨거운 불꽃의 화(火) 기운.';
+    auraStyleDesc = '루비 크림슨, 버건디 레드, 골드 악센트 & 강렬한 스테이트먼트 룩.';
+    auraElemDescEN = 'Radiant charisma, passionate leadership, and magnetic Fire essence.';
+    auraStyleDescEN = 'Ruby crimson, obsidian black, brushed gold & high-fashion tailored drama.';
+  } else if (stemElem === '토') {
+    auraImg = 'aura_earth.png';
+    auraElemDesc = '태산처럼 단단하고 묵직한 카리스마의 양토(陽土) 기운.';
+    auraStyleDesc = '골드, 딥 앰버, 중후한 어스톤 & 하이엔드 실크 슈트.';
+    auraElemDescEN = 'Grounded authority, steadfast wisdom, and regal Yang Earth presence.';
+    auraStyleDescEN = 'Deep amber, obsidian silk, warm gold embroidery & quiet luxury.';
+  } else if (stemElem === '금') {
+    auraImg = 'aura_metal.png';
+    auraElemDesc = '서릿발처럼 서늘하고 완벽주의적 결단을 내리는 다이아몬드 금(金) 기운.';
+    auraStyleDesc = '플래티넘 실버, 퓨어 화이트, 크리스탈 브로치 & 미니멀 럭셔리.';
+    auraElemDescEN = 'Sharp precision, diamond-like resilience, and immaculate Metal purity.';
+    auraStyleDescEN = 'Platinum silver, crisp white silk, diamond accents & architectural tailoring.';
+  } else if (stemElem === '수') {
+    auraImg = 'aura_water.png';
+    auraElemDesc = '깊은 심해의 통찰력으로 세상을 유연하게 이끄는 흑수(黑水) 기운.';
+    auraStyleDesc = '미드나잇 네이비, 딥 인디고, 실버 자수 & 신비로운 레이어드 룩.';
+    auraElemDescEN = 'Infinite depth, adaptive strategic genius, and mystical Water energy.';
+    auraStyleDescEN = 'Midnight navy, celestial silver embroidery & ethereal flowing layers.';
+  }
+
   return {
     pillars: p,
+    auraCard: {
+      img: auraImg,
+      elem: stemElem,
+      elemDesc: auraElemDesc,
+      styleDesc: auraStyleDesc,
+      elemDescEN: auraElemDescEN,
+      styleDescEN: auraStyleDescEN
+    },
     shipshin: {
       stemY: stemShipshinY, stemM: stemShipshinM, stemH: stemShipshinH,
       branchY: branchShipshinY, branchM: branchShipshinM, branchD: branchShipshinD, branchH: branchShipshinH
