@@ -374,6 +374,57 @@
         </div>
       </div>
 
+      <!-- 🔮 LIVE MASTER CHEON AI ORACLE CHAMBER (TOKEN DEDUCTING) -->
+      <div id="aiOracleChamber" class="p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-purple-950/40 via-slate-900 to-black border border-purple-500/30 relative overflow-hidden shadow-2xl">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-5">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-2xl shadow-inner">🔮</div>
+            <div>
+              <h3 class="text-lg font-bold cinzel text-purple-200">Master Cheon 1:1 Live Oracle Chamber</h3>
+              <p class="text-xs text-slate-400">Ask real-time questions about your romance, career, or destiny</p>
+            </div>
+          </div>
+          <!-- Token Balance Badge -->
+          <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-900/40 border border-purple-400/40 shadow-sm">
+            <span class="text-xs text-purple-300 font-medium">Available Tokens:</span>
+            <span id="tokenBalanceDisplay" class="text-base font-extrabold text-amber-300">0</span>
+            <button onclick="openCheckout('spouse')" class="ml-2 text-[11px] px-2.5 py-1 rounded-lg bg-amber-500 text-black font-bold hover:bg-amber-400 transition">+ Top Up</button>
+          </div>
+        </div>
+
+        <!-- Quick Topic Chips -->
+        <div class="mt-5 space-y-2">
+          <div class="text-xs text-slate-400 font-medium">Suggested Oracle Questions (-1 Token each):</div>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <button onclick="setOracleQuestion('When and how will I meet my destined spouse?')" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-400/40 text-slate-300 transition text-left">💍 When & where will I meet my spouse?</button>
+            <button onclick="setOracleQuestion('When will my biggest career and financial breakthrough happen?')" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-400/40 text-slate-300 transition text-left">💼 When is my biggest career/money breakthrough?</button>
+            <button onclick="setOracleQuestion('What toxic relationship pattern or red flag must I avoid?')" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-400/40 text-slate-300 transition text-left">⚠️ What toxic relationship pattern should I avoid?</button>
+            <button onclick="setOracleQuestion('Am I in my peak luck cycle right now?')" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-400/40 text-slate-300 transition text-left">🔥 Am I in my peak luck cycle right now?</button>
+          </div>
+        </div>
+
+        <!-- Question Input Area -->
+        <div class="mt-5 flex flex-col sm:flex-row gap-2">
+          <input type="text" id="oracleInput" placeholder="Ask Master Cheon anything specific (e.g. Will my 2027 move bring success?)..." class="flex-1 px-4 py-3 rounded-2xl bg-black/60 border border-white/10 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-purple-400">
+          <button id="askOracleBtn" onclick="askOracle()" class="px-6 py-3 rounded-2xl bg-gradient-to-r from-purple-600 to-amber-500 hover:from-purple-500 hover:to-amber-400 text-black font-extrabold text-xs transition shadow-lg flex items-center justify-center gap-1.5">
+            <span>🔮 Ask Oracle</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-black/30 text-amber-200">(-1 Token)</span>
+          </button>
+        </div>
+
+        <!-- Animated Live Reading Output -->
+        <div id="oracleOutputArea" class="hidden mt-6 p-5 rounded-2xl bg-black/80 border border-purple-500/40 space-y-3">
+          <div class="flex items-center justify-between text-xs text-purple-300 border-b border-white/10 pb-2">
+            <div class="flex items-center gap-2 font-bold">
+              <span class="animate-pulse text-amber-400">⚡</span> Master Cheon's Decoded Transmission
+            </div>
+            <span id="tokenStatusText" class="text-[11px] text-amber-400 font-mono">1 Token Deducted</span>
+          </div>
+          <div id="oracleQuestionEcho" class="text-xs text-slate-400 italic"></div>
+          <div id="oracleTypingText" class="text-xs sm:text-sm text-slate-200 leading-relaxed space-y-2 whitespace-pre-wrap font-sans"></div>
+        </div>
+      </div>
+
       <!-- Pricing Ladder Banner -->
       <div class="p-8 rounded-3xl bg-gradient-to-r from-amber-950/40 via-purple-950/40 to-slate-900/80 border border-amber-500/30 text-center space-y-4">
         <h3 class="text-2xl font-bold cinzel text-amber-300">Unlock Your Full Destiny Chamber</h3>
@@ -384,23 +435,26 @@
           <div class="p-5 rounded-2xl bg-black/40 border border-white/10 hover:border-amber-400/50 transition">
             <div class="text-xs text-amber-400 font-bold uppercase tracking-wider">Spouse Reveal</div>
             <div class="text-2xl font-bold text-slate-100 my-1">$0.99</div>
-            <div class="text-xs text-slate-400 mb-4">Future Spouse Profile + Face Reveal Prompt</div>
-            <button onclick="openCheckout('spouse')" class="w-full py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-black text-xs font-bold transition">Unlock $0.99</button>
+            <div class="text-xs text-slate-300 mb-2">Future Spouse Profile + Face Reveal</div>
+            <div class="text-[11px] text-amber-300 font-semibold mb-4">✨ Includes 🔮 3 AI Tokens</div>
+            <button onclick="openCheckout('spouse')" class="w-full py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-black text-xs font-bold transition">Unlock & Get 3 Tokens</button>
           </div>
           <!-- Tier 2 -->
           <div class="p-5 rounded-2xl bg-black/40 border border-amber-500/40 relative">
             <span class="absolute -top-2.5 right-4 text-[10px] bg-amber-500 text-black font-bold px-2 py-0.5 rounded-full uppercase">Most Popular</span>
             <div class="text-xs text-amber-400 font-bold uppercase tracking-wider">Dual Chamber</div>
             <div class="text-2xl font-bold text-slate-100 my-1">$3.99</div>
-            <div class="text-xs text-slate-400 mb-4">Spouse + 2027 Love & Career Deep Dive</div>
-            <button onclick="openCheckout('dual')" class="w-full py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black text-xs font-bold transition">Unlock $3.99</button>
+            <div class="text-xs text-slate-300 mb-2">Spouse + 2027 Love & Career Deep Dive</div>
+            <div class="text-[11px] text-amber-300 font-semibold mb-4">✨ Includes 🔮 10 AI Tokens</div>
+            <button onclick="openCheckout('dual')" class="w-full py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black text-xs font-bold transition">Unlock & Get 10 Tokens</button>
           </div>
           <!-- Tier 3 -->
           <div class="p-5 rounded-2xl bg-black/40 border border-white/10 hover:border-purple-400/50 transition">
             <div class="text-xs text-purple-400 font-bold uppercase tracking-wider">Imperial Master</div>
             <div class="text-2xl font-bold text-slate-100 my-1">$9.99</div>
-            <div class="text-xs text-slate-400 mb-4">Complete Lifetime Reading + Full AI Art Prompts</div>
-            <button onclick="openCheckout('master')" class="w-full py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition">Unlock $9.99</button>
+            <div class="text-xs text-slate-300 mb-2">Complete Lifetime Reading + Full AI Art Prompts</div>
+            <div class="text-[11px] text-purple-300 font-semibold mb-4">👑 Unlimited VIP AI Tokens</div>
+            <button onclick="openCheckout('master')" class="w-full py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition">Unlock All (Unlimited)</button>
           </div>
         </div>
       </div>
@@ -445,6 +499,63 @@
 const urlParams = new URLSearchParams(window.location.search);
 const isFreeMode = urlParams.get('free') === 'true' || urlParams.get('vip') === '1';
 
+let userTokens = isFreeMode ? 99 : 0;
+let lastSajuResult = null;
+
+function updateTokenDisplay() {
+  const el = document.getElementById('tokenBalanceDisplay');
+  if (el) el.innerText = userTokens;
+}
+
+function setOracleQuestion(q) {
+  document.getElementById('oracleInput').value = q;
+}
+
+function askOracle() {
+  const input = document.getElementById('oracleInput');
+  const question = input.value.trim();
+  if (!question) {
+    alert("Please enter your question for Master Cheon.");
+    return;
+  }
+
+  if (userTokens <= 0) {
+    alert("🔮 You need at least 1 Token to consult Master Cheon! Please unlock a chamber or top up tokens.");
+    openCheckout('spouse');
+    return;
+  }
+
+  userTokens--;
+  updateTokenDisplay();
+
+  const outputArea = document.getElementById('oracleOutputArea');
+  const echo = document.getElementById('oracleQuestionEcho');
+  const typing = document.getElementById('oracleTypingText');
+  const status = document.getElementById('tokenStatusText');
+
+  outputArea.classList.remove('hidden');
+  echo.innerText = `“${question}”`;
+  status.innerText = `Token Deducted (-1) · Remaining: ${userTokens}`;
+  typing.innerHTML = `<span class="animate-pulse text-purple-300">Master Cheon is reading your natal celestial chart...</span>`;
+
+  setTimeout(() => {
+    if (!lastSajuResult) {
+      typing.innerText = "Master Cheon observes your stars. Please calculate your Saju above first.";
+      return;
+    }
+    const answer = generateOracleAnswer(question, lastSajuResult, 'en');
+    let idx = 0;
+    typing.innerText = '';
+    const interval = setInterval(() => {
+      typing.innerText += answer[idx];
+      idx++;
+      if (idx >= answer.length) {
+        clearInterval(interval);
+      }
+    }, 15);
+  }, 600);
+}
+
 function calculateSaju(event) {
   event.preventDefault();
   
@@ -456,6 +567,8 @@ function calculateSaju(event) {
 
   const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
   const res = executeFullAnalysis(dateStr, hourVal, 'neutral', partner);
+  lastSajuResult = res;
+  updateTokenDisplay();
   const en = getAnalysisEN(res);
 
   // 1. Exact Four Pillars
@@ -627,6 +740,15 @@ function unlockChamber(tier) {
   });
   const lockOverlays = document.querySelectorAll('.absolute.inset-0.flex.flex-col.items-center.justify-center');
   lockOverlays.forEach(o => o.remove());
+
+  if (tier === 'spouse') {
+    userTokens += 3;
+  } else if (tier === 'dual' || tier === 'deep') {
+    userTokens += 10;
+  } else if (tier === 'master' || tier === 'all') {
+    userTokens += 999;
+  }
+  updateTokenDisplay();
 }
 </script>
 </body>

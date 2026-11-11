@@ -511,6 +511,57 @@
           <div class="text-[11px] text-slate-400">챗GPT나 미드저니에 붙여넣으면 내 사주 기운을 닮은 AI 소울 프로필이 생성됩니다!</div>
         </div>
 
+        <!-- 🔮 천도령 1:1 실시간 AI 비밀 상담실 (토큰 차감 시스템) -->
+        <div id="aiOracleChamberKo" class="p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-purple-950/40 via-slate-900 to-black border border-purple-500/30 relative overflow-hidden shadow-2xl space-y-4">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-2xl shadow-inner">🔮</div>
+              <div>
+                <h3 class="text-lg font-bold text-purple-200">천도령 1:1 실시간 AI 비밀 상담실</h3>
+                <p class="text-xs text-slate-400">결제 시 충전되는 토큰으로 천도령에게 직접 묻는 실시간 직설 점괘</p>
+              </div>
+            </div>
+            <!-- VIP Token Display -->
+            <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-900/40 border border-purple-400/40 shadow-sm">
+              <span class="text-xs text-purple-300 font-medium">보유 토큰:</span>
+              <span id="tokenBalanceDisplayKo" class="text-base font-extrabold text-amber-300">99</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30 font-bold">VIP 프리패스</span>
+            </div>
+          </div>
+
+          <!-- Suggested Questions -->
+          <div class="space-y-2">
+            <div class="text-xs text-slate-400 font-medium">추천 질문 (-1 토큰 차감):</div>
+            <div class="flex flex-wrap gap-2 text-xs">
+              <button onclick="setOracleQuestionKo('나 결혼 언제쯤 해? 내 진짜 운명 인연은 언제 나타나?')" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-400/40 text-slate-300 transition text-left">💍 결혼 언제 해? 진짜 인연 시기는?</button>
+              <button onclick="setOracleQuestionKo('이직할 타이밍이야? 언제 돈이 제일 많이 들어와?')" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-400/40 text-slate-300 transition text-left">💼 이직 타이밍 & 인생 재물 변곡점은?</button>
+              <button onclick="setOracleQuestionKo('내가 연애에서 자꾸 상처받는 똥차 패턴이 뭐야?')" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-400/40 text-slate-300 transition text-left">⚠️ 내가 자꾸 빠지는 똥차 패턴은?</button>
+              <button onclick="setOracleQuestionKo('지금 내가 하려는 일 잘 풀릴까? 올해 총운 어때?')" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-400/40 text-slate-300 transition text-left">🔥 지금 하려는 일 잘 될까? 인생 흐름은?</button>
+            </div>
+          </div>
+
+          <!-- Input Area -->
+          <div class="flex flex-col sm:flex-row gap-2">
+            <input type="text" id="oracleInputKo" placeholder="천도령에게 궁금한 고민을 구체적으로 물어보세요..." class="flex-1 px-4 py-3 rounded-2xl bg-black/60 border border-white/10 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-purple-400">
+            <button id="askOracleBtnKo" onclick="askOracleKo()" class="px-6 py-3 rounded-2xl bg-gradient-to-r from-purple-600 to-amber-500 hover:from-purple-500 hover:to-amber-400 text-black font-extrabold text-xs transition shadow-lg flex items-center justify-center gap-1.5">
+              <span>🔮 질문하기</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-black/30 text-amber-200">(-1 토큰)</span>
+            </button>
+          </div>
+
+          <!-- Animated Output Area -->
+          <div id="oracleOutputAreaKo" class="hidden mt-4 p-5 rounded-2xl bg-black/80 border border-purple-500/40 space-y-3">
+            <div class="flex items-center justify-between text-xs text-purple-300 border-b border-white/10 pb-2">
+              <div class="flex items-center gap-2 font-bold">
+                <span class="animate-pulse text-amber-400">⚡</span> 천도령의 실시간 사주 직설 점괘
+              </div>
+              <span id="tokenStatusTextKo" class="text-[11px] text-amber-400 font-mono">1 토큰 차감됨</span>
+            </div>
+            <div id="oracleQuestionEchoKo" class="text-xs text-slate-400 italic"></div>
+            <div id="oracleTypingTextKo" class="text-xs sm:text-sm text-slate-200 leading-relaxed space-y-2 whitespace-pre-wrap font-sans"></div>
+          </div>
+        </div>
+
         <!-- Share with Friends -->
         <div class="p-6 rounded-2xl bg-gradient-to-r from-amber-500/15 via-rose-500/15 to-purple-500/15 border border-white/10 text-center space-y-3">
           <div class="text-base font-bold text-amber-300">💌 친구한테 이 무료 링크 보내기</div>
@@ -526,6 +577,57 @@
 
   <!-- Client-side Logic Script -->
   <script>
+let userTokensKo = 99;
+let lastSajuResultKo = null;
+
+function setOracleQuestionKo(q) {
+  document.getElementById('oracleInputKo').value = q;
+}
+
+function askOracleKo() {
+  const input = document.getElementById('oracleInputKo');
+  const question = input.value.trim();
+  if (!question) {
+    alert("천도령에게 물어볼 질문을 입력해 주세요.");
+    return;
+  }
+
+  if (userTokensKo <= 0) {
+    alert("🔮 보유 토큰을 모두 사용하셨습니다.");
+    return;
+  }
+
+  userTokensKo--;
+  document.getElementById('tokenBalanceDisplayKo').innerText = userTokensKo;
+
+  const outputArea = document.getElementById('oracleOutputAreaKo');
+  const echo = document.getElementById('oracleQuestionEchoKo');
+  const typing = document.getElementById('oracleTypingTextKo');
+  const status = document.getElementById('tokenStatusTextKo');
+
+  outputArea.classList.remove('hidden');
+  echo.innerText = `“${question}”`;
+  status.innerText = `1 토큰 차감 완료 · 잔여: ${userTokensKo}개`;
+  typing.innerHTML = `<span class="animate-pulse text-purple-300">천도령이 사주 명식을 짚어보며 실시간 점괘를 내리고 있습니다...</span>`;
+
+  setTimeout(() => {
+    if (!lastSajuResultKo) {
+      typing.innerText = "상단에서 생년월일을 입력하고 명식 분석 버튼을 먼저 눌러주세요.";
+      return;
+    }
+    const answer = generateOracleAnswer(question, lastSajuResultKo, 'ko');
+    let idx = 0;
+    typing.innerText = '';
+    const interval = setInterval(() => {
+      typing.innerText += answer[idx];
+      idx++;
+      if (idx >= answer.length) {
+        clearInterval(interval);
+      }
+    }, 15);
+  }, 600);
+}
+
 function calculateSaju(event) {
   if (event) event.preventDefault();
   
@@ -537,6 +639,7 @@ function calculateSaju(event) {
 
   const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
   const res = executeFullAnalysis(dateStr, hourVal, 'neutral', partner);
+  lastSajuResultKo = res;
 
   // 1. Board Header & Badges
   document.getElementById('userBoardTitle').innerText = `${res.stemData.name} · ${res.spouse.season}의 기운`;

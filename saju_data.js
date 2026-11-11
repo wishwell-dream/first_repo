@@ -827,3 +827,87 @@ function executeFullAnalysis(dateStr, timeVal, gender, partner) {
     }
   };
 }
+
+function generateOracleAnswer(question, res, lang = 'ko') {
+  const q = (question || '').toLowerCase();
+  const stem = res.pillars.day.stem;
+  const branch = res.pillars.day.branch;
+  const animal = BRANCH_ANIMALS[branch];
+  const stemData = res.stemData || {};
+  const spouse = res.spouse.detail || {};
+
+  const isLove = /연애|결혼|배우자|남친|여친|인연|사랑|헤어|이별|썸|바람|짝|솔로|love|marry|marriage|spouse|dating|partner|boyfriend|girlfriend|single|ex|soulmate/.test(q);
+  const isCareer = /직장|이직|퇴사|돈|재물|사업|부자|성공|취업|시험|합격|일|회사|커리어|career|job|money|rich|wealth|work|business|promotion|quit|success|hired/.test(q);
+
+  if (lang === 'en') {
+    if (isLove) {
+      return `🔮 Master Cheon's Oracle on Love & Destiny:
+
+Looking at your Day Master (${res.pillars.day.stemHanja}${res.pillars.day.branchHanja}) and marital palace, you naturally attract partners through your deep charm, but you often suffer because you give endless patience to people who fail to reciprocate.
+
+⚡ Destined Soulmate Clues & Timing:
+• Destined Animal Archetype: ${spouse.animal || 'Destined Spirit'} (${spouse.age || 'Fated Age'}, ${spouse.style || 'Charismatic'})
+• Encounter Scenario: ${spouse.scenario || 'An unexpected creative or social crossroad'}
+• Toxic Pattern to Cut: ${spouse.conflict || 'Inconsistent communicators and emotional drainers'}
+
+Master Cheon's Decree: "Stop trying to heal people who enjoy being broken. When you honor your standards, your destined ${spouse.animal || 'true'} mate walks into your world."`;
+    } else if (isCareer) {
+      return `🔮 Master Cheon's Oracle on Career & Wealth:
+
+Your core element is ${STEM_ELEM[stem]} (${res.pillars.day.stemHanja}). You are hardwired as a "${stemData.careerTitle || 'Visionary Leader'}". You suffocate under micromanagement and empty repetitive tasks.
+
+⚡ Wealth Breakthrough Blueprint:
+• Core Wealth Weapon: ${stemData.weapon || 'Intuitive strategic foresight'}
+• Lethal Trap to Eliminate: ${stemData.trap || 'Overthinking without taking rapid decisive action'}
+• Financial Timing: ${res.wealthTiming.timing || 'Approaching cyclical breakthrough'}. Your wealth pipeline peaks when you build your independent brand or proprietary asset.
+
+Master Cheon's Decree: "Do not wait for outside approval. Your chart carries explosive upward momentum the second you build your own arena."`;
+    } else {
+      return `🔮 Master Cheon's Direct Oracle Transmission:
+
+You carry the ${STEM_ELEM[stem]} star anchored by the ${animal} spirit (${res.pillars.day.stemHanja}${res.pillars.day.branchHanja}). You project calm poise on the outside, but your mind processes hundreds of possibilities every minute.
+
+⚡ Cosmic Chart Diagnosis:
+• Your Balancing Key: ${res.yongshin.title || 'Elemental Equilibrium'}
+• Fated Current Phase: You are concluding a long cycle of silent endurance and stepping into a season of sovereign breakthrough.
+• Immediate Action: Cut out draining connections that demand your energy without refueling you.
+
+Master Cheon's Decree: "Your primal gut instinct is already pointing at the exact answer. Trust your inner compass and take that bold leap without looking back."`;
+    }
+  } else {
+    if (isLove) {
+      return `🔮 천도령의 연애·인연 1:1 직설 점괘:
+
+네 일주(${res.pillars.day.stem}${res.pillars.day.branch}일주)와 배우자궁을 짚어보니, 겉으로는 쿨한 척해도 마음을 주면 끝까지 맞춰주다 혼자 앓는 타입이야.
+
+⚡ 네 진짜 인연의 단서와 시기:
+• 상대 동물상: ${spouse.animal || '찰떡 인연'}상 (${spouse.age || '운명적 나이차'}, ${spouse.style || '매력적인 인상'})
+• 첫 만남 시나리오: ${spouse.scenario || '예상치 못한 모임이나 이동 중에 인연이 닿음'}
+• 절대 피해야 할 똥차 패턴: ${spouse.conflict || '말만 앞서고 책임감 없는 회피형 인간'}
+
+도령의 호통 한마디: "애매하게 구는 사람 고쳐 쓰려고 시간 낭비하지 마라. 네 소중함을 첫눈에 알아보고 직진하는 사람한테만 마음 열어줘도 충분하다!"`;
+    } else if (isCareer) {
+      return `🔮 천도령의 커리어·재물 1:1 직설 점괘:
+
+네 타고난 본기(${res.pillars.day.stem} 일간)는 남 밑에서 영혼 없이 갇혀 있으면 몸과 마음부터 고장 나는 기질이야. 넌 본능적으로 "${stemData.careerTitle || '자기 판을 짜는 기획자'}"의 DNA를 타고났어.
+
+⚡ 네 인생 재물 대박 치트키:
+• 필살 무기: ${stemData.weapon || '남들이 못 보는 틈새를 찾아내는 직관'}
+• 이것만 피하면 성공: ${stemData.trap || '완벽주의 때문에 실행을 자꾸 미루는 습관'}
+• 대운 변곡점: ${res.wealthTiming.timing || '운의 흐름이 크게 바뀌는 전환기'}에 네 독자적인 파이프라인이나 전문성이 터지며 금전 흐름이 활짝 열린다!
+
+도령의 호통 한마디: "지금 머릿속으로만 굴리고 있는 그 계획, 당장 작은 것부터 세상에 던져봐. 넌 네 판을 깔아야 돈이 달라붙는 팔자다!"`;
+    } else {
+      return `🔮 천도령의 인생 운세 1:1 직설 점괘:
+
+네 사주 명식(${res.pillars.day.stem}${res.pillars.day.branch}일주, ${animal}의 기운)을 보니, 겉으론 덤덤해 보여도 속으로는 혼자 짊어진 고민과 책임감이 참 많았구나.
+
+⚡ 천도령이 짚어주는 명쾌한 해답:
+• 네 인생의 핵심 열쇠: ${res.yongshin.title || '나를 지켜주는 용신의 기운'}
+• 지금 운세 흐름: 그동안 조용히 버텨온 인고의 시기가 끝나고, 이제 네가 주도권을 쥐고 치고 나갈 때가 왔다.
+• 지금 당장 버릴 것: 내 에너지를 갉아먹는 불필요한 인간관계와 남들 눈치 보기!
+
+도령의 호통 한마디: "네 마음속 촉이 가리키는 그 방향이 맞아. 딴 사람들 눈치 보지 말고 네 생각대로 당당하게 밀어붙여라!"`;
+    }
+  }
+}
