@@ -435,6 +435,10 @@
 
   <!-- Client-side Logic Script -->
   <script>
+    // Check if free mode is requested
+    const urlParams = new URLSearchParams(window.location.search);
+    const isFreeMode = urlParams.get('free') === 'true' || urlParams.get('vip') === '1';
+
     function calculateSaju(event) {
       event.preventDefault();
       
@@ -455,6 +459,10 @@
       // Show results area smoothly
       document.getElementById('resultsArea').classList.remove('hidden');
       document.getElementById('resultsArea').scrollIntoView({ behavior: 'smooth' });
+
+      if (isFreeMode) {
+        unlockChamber('all');
+      }
     }
 
     function switchTab(tabId) {
@@ -484,6 +492,11 @@
     let currentAmount = '0.99';
 
     function openCheckout(tier) {
+      if (isFreeMode) {
+        unlockChamber(tier);
+        alert("✨ VIP Free Pass active: Chamber unlocked!");
+        return;
+      }
       currentTier = tier;
       const modal = document.getElementById('checkoutModal');
       const title = document.getElementById('modalTitle');
