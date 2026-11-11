@@ -935,6 +935,15 @@ function executeFullAnalysis(dateStr, timeVal, gender, partner, preferredEthnici
     spouseImgPath = partner === 'female' ? 'spouse_f_western.png' : 'spouse_m_western.png';
   }
 
+  let loveKey = '도화살';
+  if (shinD.includes('역마살') || shinM.includes('역마살')) loveKey = '역마살';
+  else if (shinD.includes('화개살') || shinM.includes('화개살')) loveKey = '화개살';
+  else if (shinD.includes('괴강살')) loveKey = '괴강살';
+  else if (shinD.includes('문창귀인')) loveKey = '문창귀인';
+  else if (shinD.includes('천을귀인') || shinY.includes('천을귀인')) loveKey = '천을귀인';
+  else if (['자', '오', '묘', '유'].includes(dayBranch)) loveKey = '도화살';
+  const loveData = SHINSAL_LOVE_DATA[loveKey] || SHINSAL_LOVE_DATA['도화살'];
+
   // Dynamic Savage Quotes Generator based on Stem + Climate + Lacking + Branch + Seed
   const seedNum = (p.day.dayNum || 1) * 31 + (p.month.monthNum || 1) * 7 + (new Date(dateStr).getTime() % 100);
   const vTalent = seedNum % 3;
@@ -948,15 +957,6 @@ function executeFullAnalysis(dateStr, timeVal, gender, partner, preferredEthnici
   const dynamicSpouseSavage = getDynamicSpouseSavage(dayStem, dayBranch, spDetail, p.climate, ethnicLabel, vSpouse);
   const dynamicLoveSavage = getDynamicLoveSavage(loveKey, dayBranch, p.climate, vLove);
   const dynamicOracle = getDynamicLifeOracle(dayStem, yongshinText, vOracle);
-
-  let loveKey = '도화살';
-  if (shinD.includes('역마살') || shinM.includes('역마살')) loveKey = '역마살';
-  else if (shinD.includes('화개살') || shinM.includes('화개살')) loveKey = '화개살';
-  else if (shinD.includes('괴강살')) loveKey = '괴강살';
-  else if (shinD.includes('문창귀인')) loveKey = '문창귀인';
-  else if (shinD.includes('천을귀인') || shinY.includes('천을귀인')) loveKey = '천을귀인';
-  else if (['자', '오', '묘', '유'].includes(dayBranch)) loveKey = '도화살';
-  const loveData = SHINSAL_LOVE_DATA[loveKey] || SHINSAL_LOVE_DATA['도화살'];
 
   const wealthTiming = getWealthTiming(dayStem, gyeokData.name, p.climate);
 
