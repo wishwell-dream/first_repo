@@ -192,32 +192,32 @@
           <div class="p-3 bg-white/[0.02] border border-white/5 rounded-2xl">
             <div class="text-[10px] text-slate-400 uppercase tracking-widest">Year (년주)</div>
             <div class="text-xl sm:text-2xl font-bold text-slate-200 mt-1 font-serif" id="pillarYear">丁丑</div>
-            <div class="text-[10px] text-amber-300 mt-1">Fire Ox</div>
+            <div class="text-[10px] text-amber-300 mt-1" id="pillarYearDesc">Fire Ox</div>
           </div>
           <div class="p-3 bg-white/[0.02] border border-white/5 rounded-2xl">
             <div class="text-[10px] text-slate-400 uppercase tracking-widest">Month (월주)</div>
             <div class="text-xl sm:text-2xl font-bold text-slate-200 mt-1 font-serif" id="pillarMonth">壬子</div>
-            <div class="text-[10px] text-blue-300 mt-1">Water Rat (도화)</div>
+            <div class="text-[10px] text-blue-300 mt-1" id="pillarMonthDesc">Water Rat</div>
           </div>
           <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-2xl relative overflow-hidden">
             <span class="absolute top-1 right-1 text-[8px] bg-amber-500 text-black px-1 rounded font-bold uppercase">Spouse</span>
             <div class="text-[10px] text-amber-300 font-semibold uppercase tracking-widest">Day (일주)</div>
             <div class="text-xl sm:text-2xl font-bold text-amber-300 mt-1 font-serif" id="pillarDay">戊申</div>
-            <div class="text-[10px] text-amber-200 mt-1 font-medium">Earth Monkey</div>
+            <div class="text-[10px] text-amber-200 mt-1 font-medium" id="pillarDayDesc">Earth Monkey</div>
           </div>
           <div class="p-3 bg-white/[0.02] border border-white/5 rounded-2xl">
             <div class="text-[10px] text-slate-400 uppercase tracking-widest">Hour (시주)</div>
             <div class="text-xl sm:text-2xl font-bold text-slate-200 mt-1 font-serif" id="pillarHour">丙辰</div>
-            <div class="text-[10px] text-rose-300 mt-1">Fire Dragon</div>
+            <div class="text-[10px] text-rose-300 mt-1" id="pillarHourDesc">Fire Dragon</div>
           </div>
         </div>
 
         <!-- Detected Stars Badge Bar -->
-        <div class="mt-6 flex flex-wrap gap-2 pt-4 border-t border-white/5 text-xs">
+        <div id="starsBadgeBar" class="mt-6 flex flex-wrap gap-2 pt-4 border-t border-white/5 text-xs">
           <span class="text-slate-400 py-1">Detected Stars (신살):</span>
-          <span class="px-2.5 py-1 rounded-lg bg-pink-950/40 border border-pink-500/30 text-pink-300">🌸 Peach Blossom Star (자수 도화)</span>
-          <span class="px-2.5 py-1 rounded-lg bg-purple-950/40 border border-purple-500/30 text-purple-300">🕯️ The Mystic Lotus (화개살)</span>
-          <span class="px-2.5 py-1 rounded-lg bg-amber-950/40 border border-amber-500/30 text-amber-300">⚔️ Spotlight Magnet (망신/식신)</span>
+          <span class="px-2.5 py-1 rounded-lg bg-pink-950/40 border border-pink-500/30 text-pink-300">🌸 Peach Blossom Star</span>
+          <span class="px-2.5 py-1 rounded-lg bg-purple-950/40 border border-purple-500/30 text-purple-300">🕯️ The Mystic Lotus</span>
+          <span class="px-2.5 py-1 rounded-lg bg-amber-950/40 border border-amber-500/30 text-amber-300">⚔️ Spotlight Magnet</span>
         </div>
       </div>
 
@@ -295,23 +295,23 @@
       <!-- TAB 2: LOVE & PEACH BLOSSOM -->
       <div id="content-love" class="tab-content hidden space-y-6">
         <div class="bg-slate-900/80 border border-white/10 rounded-3xl p-6 sm:p-8">
-          <h3 class="text-2xl font-bold cinzel text-pink-300 mb-2">🌸 Peach Blossom (도화살) & Hidden Magnetism</h3>
-          <p class="text-sm text-slate-300 leading-relaxed mb-6">
-            You hold <strong class="text-pink-300 font-semibold">Water Peach Blossom (자수 도화)</strong> in your Month Pillar. Unlike superficial flashy charisma, yours is subterranean and intoxicating. You draw people in without saying a word, making them obsess over what you're thinking.
+          <h3 class="text-2xl font-bold cinzel text-pink-300 mb-2">🌸 <span id="loveStarTitle">Peach Blossom (도화살) & Hidden Magnetism</span></h3>
+          <p id="loveStarDesc" class="text-sm text-slate-300 leading-relaxed mb-6">
+            You hold <strong class="text-pink-300 font-semibold">Peach Blossom Star</strong> in your natal chart. Your allure is subterranean and intoxicating. You draw people in without saying a word, making them obsess over what you're thinking.
           </p>
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
             <div class="p-4 rounded-xl bg-black/30 border border-white/5">
               <div class="text-amber-400 font-bold uppercase mb-1">Your Allure Trigger</div>
-              <p class="text-slate-300">Vulnerability mixed with aloofness. When you look distant, people try desperately to earn your smile.</p>
+              <p id="loveTriggerText" class="text-slate-300">Vulnerability mixed with aloofness. When you look distant, people try desperately to earn your smile.</p>
             </div>
             <div class="p-4 rounded-xl bg-black/30 border border-white/5">
               <div class="text-rose-400 font-bold uppercase mb-1">The Poison Fruit (Red Flag)</div>
-              <p class="text-slate-300">You attract wounded souls who mistake your deep empathy for an invitation to drain your life force.</p>
+              <p id="loveRedFlagText" class="text-slate-300">You attract wounded souls who mistake your deep empathy for an invitation to drain your life force.</p>
             </div>
             <div class="p-4 rounded-xl bg-black/30 border border-white/5">
-              <div class="text-emerald-400 font-bold uppercase mb-1">2027 Love Window</div>
-              <p class="text-slate-300">A major cosmic clash in autumn 2027 breaks off toxic attachments and ushers in your real partner.</p>
+              <div class="text-emerald-400 font-bold uppercase mb-1">Destiny Love Window</div>
+              <p id="loveTimingText" class="text-slate-300">A major cosmic alignment in 2027 breaks off toxic attachments and ushers in your real partner.</p>
             </div>
           </div>
 
@@ -328,22 +328,22 @@
       <!-- TAB 3: CAREER & WEALTH -->
       <div id="content-career" class="tab-content hidden space-y-6">
         <div class="bg-slate-900/80 border border-white/10 rounded-3xl p-6 sm:p-8">
-          <h3 class="text-2xl font-bold cinzel text-amber-300 mb-2">⚡ Career Vault: Why You Cannot Work for Idiots</h3>
-          <p class="text-sm text-slate-300 leading-relaxed mb-6">
-            Your Day Master is <strong class="text-amber-300">Yang Earth (무토)</strong> over Monkey. You possess the 'Independent Mountain' energy. You physically wither under micromanagement and meaningless corporate bureaucracy.
+          <h3 class="text-2xl font-bold cinzel text-amber-300 mb-2">⚡ <span id="careerTitleText">Career Vault: Why You Cannot Work for Idiots</span></h3>
+          <p id="careerDescText" class="text-sm text-slate-300 leading-relaxed mb-6">
+            Your Day Master holds independent sovereign energy. You physically wither under micromanagement and meaningless corporate bureaucracy.
           </p>
 
           <div class="space-y-3 text-sm text-slate-300">
             <div class="p-4 rounded-xl bg-black/40 border border-white/5 flex gap-3">
               <span class="text-lg">👑</span>
               <div>
-                <strong class="text-slate-100">Your Wealth Weapon:</strong> Autonomous creation. You monetize your unique taste, systems, and creative leadership, not repetitive labor.
+                <strong class="text-slate-100">Your Wealth Weapon:</strong> <span id="careerWeaponText">Autonomous creation. You monetize your unique taste, systems, and creative leadership, not repetitive labor.</span>
               </div>
             </div>
             <div class="p-4 rounded-xl bg-black/40 border border-white/5 flex gap-3">
               <span class="text-lg">🔥</span>
               <div>
-                <strong class="text-slate-100">The Burnout Trap:</strong> Taking on other people's incompetence because “it's faster if I just do it myself.” Learn to cut ties ruthlessly.
+                <strong class="text-slate-100">The Burnout Trap:</strong> <span id="careerTrapText">Taking on other people's incompetence because “it's faster if I just do it myself.” Learn to cut ties ruthlessly.</span>
               </div>
             </div>
           </div>
@@ -353,9 +353,9 @@
       <!-- TAB 4: PERSONAL AURA & AI AVATAR -->
       <div id="content-aura" class="tab-content hidden space-y-6">
         <div class="bg-slate-900/80 border border-white/10 rounded-3xl p-6 sm:p-8">
-          <h3 class="text-2xl font-bold cinzel text-purple-300 mb-2">🕯️ The Mystic Lotus (화개살): Your True Aesthetic Aura</h3>
-          <p class="text-sm text-slate-300 leading-relaxed mb-6">
-            In ancient Korea, <strong class="text-purple-300">Hwagae (화개)</strong> was the golden canopy covering the emperor. It represents the solitary philosopher, profound artistic insight, and an aristocratic vibe that people dare not disrespect.
+          <h3 class="text-2xl font-bold cinzel text-purple-300 mb-2">🕯️ <span id="auraTitleText">The Mystic Lotus: Your True Aesthetic Aura</span></h3>
+          <p id="auraDescText" class="text-sm text-slate-300 leading-relaxed mb-6">
+            In ancient Korea, your star represented the solitary philosopher, profound artistic insight, and an aristocratic vibe that people dare not disrespect.
           </p>
 
           <!-- Prompt Box with 1-Click Copy -->
@@ -454,110 +454,60 @@ function calculateSaju(event) {
   const hourVal = document.getElementById('birthHour').value;
   const partner = document.getElementById('partnerGender').value;
 
-  const stems = ['갑', '을', '병', '정', '무', '기', '경', '신', '임', '계'];
-  const branches = ['자', '축', '인', '묘', '진', '사', '오', '미', '신', '유', '술', '해'];
-  const jiazi = [];
-  for (let i = 0; i < 60; i++) {
-    jiazi.push(stems[i % 10] + branches[i % 12]);
-  }
+  const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  const res = executeFullAnalysis(dateStr, hourVal, 'neutral', partner);
+  const en = getAnalysisEN(res);
 
-  // 1. Exact Day Pillar (일주): Reference 1998-01-01 is '무신' (index 44 in 60 Jiazi)
-  const refDate = new Date(Date.UTC(1998, 0, 1));
-  const targetDate = new Date(Date.UTC(year, month - 1, day));
-  const diffDays = Math.round((targetDate - refDate) / (1000 * 60 * 60 * 24));
-  const refIdx = 44; // 무신
-  const dayIdx = ((refIdx + diffDays) % 60 + 60) % 60;
-  const dayPillar = jiazi[dayIdx];
-  const dayStem = dayPillar[0];
-  const dayBranch = dayPillar[1];
+  // 1. Exact Four Pillars
+  document.getElementById('pillarYear').innerText = `${res.pillars.year.stemHanja}${res.pillars.year.branchHanja}`;
+  document.getElementById('pillarYearDesc').innerText = `${STEM_ELEM[res.pillars.year.stem]} ${BRANCH_ANIMALS[res.pillars.year.branch]}`;
+  
+  document.getElementById('pillarMonth').innerText = `${res.pillars.month.stemHanja}${res.pillars.month.branchHanja}`;
+  document.getElementById('pillarMonthDesc').innerText = `${STEM_ELEM[res.pillars.month.stem]} ${BRANCH_ANIMALS[res.pillars.month.branch]}`;
+  
+  document.getElementById('pillarDay').innerText = `${res.pillars.day.stemHanja}${res.pillars.day.branchHanja}`;
+  document.getElementById('pillarDayDesc').innerText = `${STEM_ELEM[res.pillars.day.stem]} ${BRANCH_ANIMALS[res.pillars.day.branch]}`;
+  
+  document.getElementById('pillarHour').innerText = `${res.pillars.hour.stemHanja}${res.pillars.hour.branchHanja}`;
+  document.getElementById('pillarHourDesc').innerText = `${STEM_ELEM[res.pillars.hour.stem]} ${BRANCH_ANIMALS[res.pillars.hour.branch]}`;
 
-  // 2. Year Pillar (년주): Saju year begins around Feb 4 (입춘)
-  const isBeforeIpchun = (month < 2 || (month === 2 && day < 4));
-  const sajuYear = isBeforeIpchun ? year - 1 : year;
-  const yearIdx = ((sajuYear - 1984) % 60 + 60) % 60;
-  const yearPillar = jiazi[yearIdx];
-  const yearStem = yearPillar[0];
-  const yearBranch = yearPillar[1];
+  document.getElementById('dayMasterText').innerText = en.stemEN.name;
 
-  // 3. Month Pillar (월주):
-  const monthBranchIdx = (month + 1) % 12;
-  const monthStemBase = [2, 4, 6, 8, 0][stems.indexOf(yearStem) % 5];
-  const monthStemIdx = (monthStemBase + (month === 1 ? 11 : month - 2)) % 10;
-  let monthPillar = stems[monthStemIdx] + branches[monthBranchIdx];
-  if (year === 1998 && month === 1 && day === 1) {
-    monthPillar = '임자';
-  }
+  // 2. Detected Natal Stars Bar
+  const badgesHtml = `<span class="text-slate-400 py-1">Detected Natal Matrix:</span>` +
+    en.starsBadges.map(b => `<span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-200">${b}</span>`).join('');
+  document.getElementById('starsBadgeBar').innerHTML = badgesHtml;
 
-  // 4. Hour Pillar (시주):
-  let hourPillar = '시주 미상';
-  const hourMap = {
-    '23-1': 0, '1-3': 1, '3-5': 2, '5-7': 3, '7-9': 4,
-    '9-11': 5, '11-13': 6, '13-15': 7, '15-17': 8,
-    '17-19': 9, '19-21': 10, '21-23': 11
-  };
-  if (hourVal !== 'unknown' && hourMap[hourVal] !== undefined) {
-    const hBranchIdx = hourMap[hourVal];
-    const dayStemIdx = stems.indexOf(dayStem);
-    const hStemBase = [0, 2, 4, 6, 8][dayStemIdx % 5];
-    const hStemIdx = (hStemBase + hBranchIdx) % 10;
-    hourPillar = stems[hStemIdx] + branches[hBranchIdx];
-  }
-
-  // UI: Pillars
-  document.getElementById('pillarYear').innerText = yearPillar;
-  document.getElementById('pillarMonth').innerText = monthPillar;
-  document.getElementById('pillarDay').innerText = dayPillar;
-  document.getElementById('pillarHour').innerText = hourPillar;
-
-  const stemData = STEMS_DATA[dayStem] || STEMS_DATA['무'];
-  document.getElementById('dayMasterText').innerText = stemData.name;
-
-  // Chapter: Spouse (Ten God & Climate)
-  const tenGod = getTenGod(dayStem, dayBranch);
-  const climateKey = getClimate(month);
-  const tenGodData = TEN_GOD_SPOUSE[tenGod] || TEN_GOD_SPOUSE["정관"];
-  const climateData = CLIMATE_SPOUSE[climateKey];
-
-  document.getElementById('spouseArchetypeIndex').innerText = `“${tenGodData.title}”`;
-  document.getElementById('spouseSavageIndex').innerText = `“You were born in ${climateData.season}, meaning your chart has an elemental bias that craves ${climateData.needed}. Combined with your Spouse Palace energy of ${tenGod}, your destined soulmate manifests as ${tenGodData.title}.”`;
-  document.getElementById('spouseAuraIndex').innerText = tenGodData.vibe;
-  document.getElementById('spouseCareerIndex').innerText = tenGodData.jobs;
-  document.getElementById('spouseDynamicIndex').innerText = tenGodData.fight;
-  document.getElementById('spouseAgeIndex').innerText = tenGodData.age;
-
-  const timingYears = ['Late 2026', 'Autumn 2027 (Sept-Nov)', 'Spring 2028 (March-May)'];
-  const timingIdx = (year + month + day) % 3;
-  document.getElementById('spouseMeetingIndex').innerText = `Timing: ${timingYears[timingIdx]} through shared passion or quiet project.`;
-
-  const group = tenGodData.group;
-  const namesM = {
-    'warm': 'Julian / Do-hyun (30)',
-    'leader': 'Marcus / Tae-oh (33)',
-    'artistic': 'Leo / Jun-woo (29)',
-    'intellectual': 'Alexander / Min-woo (31)'
-  };
-  const namesF = {
-    'warm': 'Grace / Da-eun (28)',
-    'leader': 'Olivia / Seo-ah (31)',
-    'artistic': 'Mia / Yu-na (27)',
-    'intellectual': 'Chloe / Seo-yeon (29)'
-  };
+  // 3. Tab 1: Destined Spouse (24 high-res portraits & dynamic match)
+  document.getElementById('spouseArchetypeIndex').innerText = `“${res.spouse.detail.animal} Archetype · ${res.spouse.detail.style}”`;
+  document.getElementById('spouseSavageIndex').innerText = `“Born in ${res.spouse.season}, your soul craves elemental balance. Destined with the ${res.spouse.detail.animal} spirit: ${res.spouse.role}”`;
+  document.getElementById('spouseAuraIndex').innerText = `${res.spouse.detail.style}. ${res.spouse.detail.animal}-like captivating eyes.`;
+  document.getElementById('spouseCareerIndex').innerText = res.spouse.detail.jobs;
+  document.getElementById('spouseDynamicIndex').innerText = res.spouse.detail.conflict;
+  document.getElementById('spouseAgeIndex').innerText = res.spouse.detail.age;
+  document.getElementById('spouseMeetingIndex').innerText = `First meeting: ${res.spouse.detail.scenario}`;
+  document.getElementById('spouseNameIndex').innerText = `${res.spouse.detail.animal} Companion (${res.spouse.detail.age})`;
 
   const spouseImg = document.getElementById('spouseImgIndex');
-  const spouseName = document.getElementById('spouseNameIndex');
-  if (partner === 'female') {
-    if (group === 'leader') spouseImg.src = 'spouse_f_leader.png';
-    else if (group === 'artistic') spouseImg.src = 'spouse_f_artistic.png';
-    else if (group === 'warm') spouseImg.src = 'spouse_f_warm.png';
-    else spouseImg.src = 'spouse_female.png';
-    spouseName.innerText = namesF[group] || 'Chloe / Seo-yeon (29)';
-  } else {
-    if (group === 'leader') spouseImg.src = 'spouse_m_leader.png';
-    else if (group === 'artistic') spouseImg.src = 'spouse_m_artistic.png';
-    else if (group === 'warm') spouseImg.src = 'spouse_m_warm.png';
-    else spouseImg.src = 'spouse_male.png';
-    spouseName.innerText = namesM[group] || 'Alexander / Min-woo (31)';
-  }
+  spouseImg.src = res.spouse.img;
+
+  // 4. Tab 2: Love & Peach Blossom
+  document.getElementById('loveStarTitle').innerText = en.loveEN.title;
+  document.getElementById('loveStarDesc').innerText = en.loveEN.desc;
+  document.getElementById('loveTriggerText').innerText = en.loveEN.trigger;
+  document.getElementById('loveRedFlagText').innerText = en.loveEN.redFlag;
+  document.getElementById('loveTimingText').innerText = en.loveEN.timing;
+
+  // 5. Tab 3: Career & Ambition
+  document.getElementById('careerTitleText').innerText = en.stemEN.careerTitle;
+  document.getElementById('careerDescText').innerText = en.stemEN.careerDesc;
+  document.getElementById('careerWeaponText').innerText = en.stemEN.weapon;
+  document.getElementById('careerTrapText').innerText = en.stemEN.trap;
+
+  // 6. Tab 4: Personal Aura & AI Avatar
+  document.getElementById('auraTitleText').innerText = en.stemEN.auraTitle;
+  document.getElementById('auraDescText').innerText = en.stemEN.auraDesc;
+  document.getElementById('aiPromptText').value = en.prompt;
 
   // Show results area smoothly
   document.getElementById('resultsArea').classList.remove('hidden');

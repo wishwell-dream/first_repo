@@ -461,7 +461,7 @@
 
         <div class="p-4 rounded-2xl bg-black/50 border border-pink-500/20 text-sm text-slate-200">
           <span class="text-pink-400 font-bold block mb-1 text-xs">천도령의 연애사 팩폭:</span>
-          “너는 왜 자꾸 ‘어딘가 결핍 있고 모성애 자극하는 인간’한테 끌리냐? 네가 무슨 테레사 수녀도 아니고, 남의 꼬인 인생 구원해주려다가 네 멘탈만 탈탈 털렸던 기억 있지? 그건 사랑이 아니라 **너의 사주 속 오지랖과 자수 도화의 나쁜 작용**이다. 당장 정신 차려라.”
+          <span id="loveSavage">“너는 왜 자꾸 ‘어딘가 결핍 있고 모성애 자극하는 인간’한테 끌리냐? 네가 무슨 테레사 수녀도 아니고, 남의 꼬인 인생 구원해주려다가 네 멘탈만 탈탈 털렸던 기억 있지? 그건 사랑이 아니라 **너의 사주 속 오지랖과 자수 도화의 나쁜 작용**이다. 당장 정신 차려라.”</span>
         </div>
 
         <div class="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -494,10 +494,7 @@
         </div>
 
         <div class="p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 text-sm text-slate-200 leading-relaxed space-y-3">
-          <p class="font-bold text-amber-300">“기억해라. 너는 남들이 만들어놓은 좁은 틀에 억지로 몸을 구겨 넣을 때 제일 못생겨진다.”</p>
-          <p>
-            너의 사주는 남의 인정을 구걸하는 사주가 아니라, 네가 만든 세상에 남들이 줄 서서 들어오게 만드는 사주다. 남들의 잔소리나 쓸데없는 참견에 귀 닫고, 네 직관과 고집을 믿고 밀어붙여라. 네 고집이 세상을 바꾸는 무기다.
-          </p>
+          <p id="oracleText" class="font-bold text-amber-300 leading-relaxed">“기억해라. 너는 남들이 만들어놓은 좁은 틀에 억지로 몸을 구겨 넣을 때 제일 못생겨진다.”</p>
         </div>
 
         <!-- AI Avatar Prompt Box -->
@@ -613,6 +610,9 @@ function calculateSaju(event) {
   document.getElementById('talentsList').innerHTML = talentsHtml;
 
   // 6. Chapter 2: Career
+  document.getElementById('careerSavage').innerText = res.stemData.careerSavage;
+  document.getElementById('badEnvList').innerHTML = res.stemData.badEnvs.map(e => `<li>${e}</li>`).join('');
+  document.getElementById('goodEnvList').innerHTML = res.stemData.goodEnvs.map(e => `<li>${e}</li>`).join('');
   const jobsHtml = res.stemData.careers.map((job, idx) => `
     <div class="p-3 bg-white/[0.02] rounded-xl border border-white/5 flex items-center gap-2 text-slate-200">
       <span class="text-emerald-400 font-bold">0${idx + 1}</span>
@@ -620,6 +620,7 @@ function calculateSaju(event) {
     </div>
   `).join('');
   document.getElementById('bestJobsList').innerHTML = jobsHtml;
+  document.getElementById('wealthTiming').innerText = res.wealthTiming;
 
   // 7. Chapter 3: Spouse (240 combinations)
   const spImg = document.getElementById('spouseImg');
@@ -629,19 +630,23 @@ function calculateSaju(event) {
   document.getElementById('spouseArchetype').innerText = `“${res.spouse.detail.animal}상 · ${res.spouse.detail.style}”`;
   document.getElementById('spouseSavage').innerText = `${res.spouse.season}철에 태어난 ${res.spouse.dayPillarName} 맞춤 처방전: “${res.spouse.detail.animal}상의 기운을 품고 태어난 인연으로, 네 사주의 결핍을 채워주고 인생을 일으켜 세울 운명의 짝이다.”`;
   document.getElementById('spouseFullAppearance').innerText = `${res.spouse.detail.style}. ${res.spouse.detail.animal}을 닮은 매력적인 눈매와 독보적인 아우라를 지님.`;
-  document.getElementById('spouseFullRole').innerText = `내 사주의 ${res.yongshin.title}을 공급해 주며, 내가 흔들릴 때 든든하게 받쳐주는 인생의 치트키 파트너.`;
+  document.getElementById('spouseFullRole').innerText = res.spouse.role;
   document.getElementById('spouseFullAge').innerText = res.spouse.detail.age;
   document.getElementById('spouseFullJob').innerText = res.spouse.detail.jobs;
   document.getElementById('spouseFullMeeting').innerText = res.spouse.detail.scenario;
   document.getElementById('spouseFullDynamic').innerText = res.spouse.detail.conflict;
   document.getElementById('spouseNameTag').innerText = `${res.spouse.detail.animal}상 운명의 짝 (${res.spouse.detail.age})`;
 
-  // 8. Chapter 4: Shinsal
-  document.getElementById('shinsalTitle').innerText = `${res.shinsals.d} — 사주 원국의 치명적 매력과 기운`;
-  document.getElementById('shinsalDesc').innerText = `너는 사주에 ${res.shinsals.d}이 자리 잡고 있어, 억지로 꾸미지 않아도 특유의 깊은 아우라로 사람들의 시선을 사로잡는 사주다.`;
-  document.getElementById('shinsalRedFlag').innerText = `내 사주의 약점을 파고들어 죄책감을 유발하거나 내 독립성을 옥죄는 가스라이팅형 인물.`;
+  // 8. Chapter 4: Shinsal & Love
+  document.getElementById('loveSavage').innerText = res.loveData.savage;
+  document.getElementById('shinsalTitle').innerText = res.loveData.title;
+  document.getElementById('shinsalDesc').innerText = `너는 사주 원국에 ${res.loveData.title.split('—')[0].trim()}의 에너지가 깊게 배어있어, 상대방을 순식간에 매료시키는 독보적인 분위기를 품고 있다.`;
+  document.getElementById('shinsalTrigger').innerText = res.loveData.trigger;
+  document.getElementById('shinsalRedFlag').innerText = res.loveData.redFlag;
+  document.getElementById('shinsalTiming').innerText = res.loveData.timing;
 
-  // 9. Chapter 5: AI Prompt
+  // 9. Chapter 5: Oracle & AI Prompt
+  document.getElementById('oracleText').innerText = res.stemData.oracle;
   document.getElementById('aiPromptText').value = `Cinematic portrait of an East Asian spouse radiating ${res.stemData.name} and ${res.spouse.detail.style}, ${res.spouse.detail.animal}-like charismatic eyes, luxury wardrobe, 8k resolution, Masterpiece --ar 16:9`;
 
   // Show Results Area Smoothly
